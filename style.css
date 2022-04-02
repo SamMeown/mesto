@@ -132,3 +132,57 @@
   background-image: url(./images/profile_add-btn.svg);
   background-size: 22px auto;
 }
+
+.places__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px 17px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.places__item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.places__image {
+  /* width: 100%; */
+  height: 282px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.places__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 21px;
+  height: 79px;
+  background-color: #fff;
+}
+
+.places__name {
+  margin: 0;
+  color: #000;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.places__like-btn {
+  flex-shrink: 0;
+  margin-left: 22px;
+  width: 22px;
+  height: 19px;
+  border: none;
+  background-image: url(./images/places_like-off.svg);
+}
+
+.page__places {
+  margin-top: 51px;
+}
