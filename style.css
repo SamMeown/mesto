@@ -23,15 +23,6 @@
        url('./fonts/inter-900.woff') format('woff');
 }
 
-/* borders for dev*/
-/* body, header, div, .page, .section, section, ul, li {
-  border: 1px solid red;
-}
-
-img, h1, h2, h3, h4, p, a, button{
-  border: 1px solid blue;
-} */
-
 .page {
   background-color: #000;
   color: #fff;
