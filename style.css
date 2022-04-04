@@ -250,6 +250,7 @@
   left: calc(50% - 2px);
   height: 34px;
   border: 2px solid #fff;
+  background-color: #fff;
   transform: rotate(45deg);
 }
 
