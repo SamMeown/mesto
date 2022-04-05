@@ -23,6 +23,16 @@
        url('./fonts/inter-900.woff') format('woff');
 }
 
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
+}
+
 .page {
   background-color: #000;
   color: #fff;
@@ -112,6 +122,11 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.btn:hover {
+  opacity: 0.6;
 }
 
 .profile__edit-btn {
@@ -190,6 +205,18 @@
   background-image: url(./images/places_like-off.svg);
 }
 
+.places__like-btn:hover {
+  opacity: 0.5;
+}
+
+.places__like-btn_clicked {
+  background-image: url(./images/places_like-on.svg);
+}
+
+.places__like-btn_clicked:hover {
+  opacity: 1.0;
+}
+
 .page__places {
   margin-top: 51px;
 }
@@ -218,10 +245,13 @@
   right: 0;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
 }
 
 .popup_opened {
   display: flex;
+  opacity: 1.0;
+  animation: fadeIn 0.2s;
 }
 
 .popup__container {
@@ -320,4 +350,9 @@
   font-size: 18px;
   line-height: 22px;
   cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.profile-form__submit-btn:hover {
+  opacity: 0.8;
 }

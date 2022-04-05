@@ -10,6 +10,8 @@ let profileName = profile.querySelector('.profile__name');
 let profileAbout = profile.querySelector('.profile__about');
 let profileEditButton = profile.querySelector('.profile__edit-btn');
 
+let placesList = document.querySelector('.places__list');
+
 function openPopup() {
   initPopupForm();
   popup.classList.add('popup_opened');
@@ -51,3 +53,9 @@ popup.addEventListener('click', function(event) {
 });
 
 formElement.addEventListener('submit', formSubmitHandler);
+
+placesList.addEventListener('click', function (event) {
+  if (event.target.classList.contains('places__like-btn')) {
+    event.target.classList.toggle('places__like-btn_clicked');
+  }
+});
