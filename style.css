@@ -208,7 +208,7 @@
 }
 
 .popup {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -218,6 +218,10 @@
   right: 0;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup_opened {
+  display: flex;
 }
 
 .popup__container {
