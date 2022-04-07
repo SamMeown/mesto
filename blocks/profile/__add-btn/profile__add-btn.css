@@ -7,3 +7,19 @@
   background-image: url(../../../images/profile_add-btn.svg);
   background-size: 22px auto;
 }
+
+@media screen and (max-width: 1023px) {
+  .profile__add-btn {
+    margin-left: 112px;
+    flex-shrink: 1;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__add-btn {
+    width: 100%;
+    max-width: 570px;
+    margin-left: 0;
+    background-size: 16px auto;
+  }
+}

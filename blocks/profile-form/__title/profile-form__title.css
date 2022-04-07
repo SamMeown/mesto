@@ -4,3 +4,10 @@
   font-size: 24px;
   line-height: 29px;
 }
+
+@media screen and (max-width: 767px) {
+  .profile-form__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

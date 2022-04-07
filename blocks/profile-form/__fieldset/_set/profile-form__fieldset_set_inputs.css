@@ -1,3 +1,9 @@
 .profile-form__fieldset_set_inputs {
   margin-top: 48px;
 }
+
+@media screen and (max-width: 767px) {
+  .profile-form__fieldset_set_inputs {
+    margin-top: 75px;
+  }
+}

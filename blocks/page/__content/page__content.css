@@ -8,3 +8,26 @@
   width: calc(100% - 2*200px);
   max-width: calc(1280px - 2*200px);
 }
+
+@media screen and (max-width: 1279px) {
+  .page__content {
+    width: calc(100% - 2*100px);
+    max-width: calc(1280px - 2*200px);
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .page__content {
+    width: calc(100% - 2*60px);
+    max-width: calc(1024px - 2*100px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .page__content {
+    padding: 28px 0 36px;
+    width: calc(100% - 2*19px);
+    max-width: calc(768px - 2*60px);
+    min-width: calc(320px - 2*19px);
+  }
+}

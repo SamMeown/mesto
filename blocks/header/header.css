@@ -3,3 +3,11 @@
   padding-bottom: 41px;
   border-bottom: 1px solid #545454B2;
 }
+
+@media screen and (max-width: 767px) {
+  .header {
+    align-self: center;
+    width: calc(100% + 2*19px);
+    padding-bottom: 31px;
+  }
+}

@@ -5,3 +5,12 @@
   background-image: url(../../../images/profile_edit-btn.svg);
   background-size: 10px auto;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__edit-btn {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px auto;
+  }
+}

@@ -6,3 +6,13 @@
   padding: 0;
   list-style: none;
 }
+
+@media screen and (max-width: 1023px) {
+  .places__list {
+    grid-template-columns: repeat(auto-fit, minmax(263px, 1fr));
+    grid-gap: 20px 17px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
