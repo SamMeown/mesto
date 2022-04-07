@@ -1,0 +1,7 @@
+.places__like-btn_clicked {
+  background-image: url(../../../../images/places_like-on.svg);
+}
+
+.places__like-btn_clicked:hover {
+  opacity: 1.0;
+}

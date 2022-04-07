@@ -1,0 +1,12 @@
+.places__like-btn {
+  flex-shrink: 0;
+  margin-left: 22px;
+  width: 22px;
+  height: 19px;
+  border: none;
+  background-image: url(../../../images/places_like-off.svg);
+}
+
+.places__like-btn:hover {
+  opacity: 0.5;
+}

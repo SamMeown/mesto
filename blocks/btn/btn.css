@@ -1,0 +1,16 @@
+.btn {
+  box-sizing: border-box;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #fff;
+  background-color:transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.btn:hover {
+  opacity: 0.6;
+}
