@@ -1,0 +1,14 @@
+.profile-form__input {
+  padding: 0 0 10px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.profile-form__input:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.5);
+}
