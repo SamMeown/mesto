@@ -480,4 +480,43 @@
   .page__footer {
     margin-top: 48px;
   }
+
+  .popup__container {
+    padding: 25px 22px;
+    min-width: 282px;
+  }
+
+  .popup__close-btn {
+    top: -36px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  .popup__close-btn::before,
+  .popup__close-btn::after {
+    top: -2px;
+    left: calc(50% - 1px);
+    height: 22px;
+    border: 1px solid #fff;
+  }
+
+  .profile-form__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .profile-form__fieldset_set_inputs {
+    margin-top: 75px;
+  }
+
+  .profile-form__fieldset_set_input-handlers {
+    margin-top: 45px;
+  }
+
+  .profile-form__submit-btn {
+    height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
