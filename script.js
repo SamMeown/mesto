@@ -1,3 +1,30 @@
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 let popup = document.querySelector('.popup');
 let popupCloseButton = popup.querySelector('.popup__close-btn');
 
@@ -11,6 +38,8 @@ let profileAbout = profile.querySelector('.profile__about');
 let profileEditButton = profile.querySelector('.profile__edit-btn');
 
 let placesList = document.querySelector('.places__list');
+
+const cardTemplate = document.querySelector('#place-card').content;
 
 function openPopup() {
   initPopupForm();
@@ -41,6 +70,18 @@ function formSubmitHandler(event) {
 
   closePopup();
 }
+
+function renderPlaceCard(cardInfo) {
+  const placeItem = cardTemplate.firstElementChild.cloneNode(true);
+  const placeImage = placeItem.querySelector('.places__image');
+  placeImage.src = cardInfo.link;
+  placeImage.alt = cardInfo.name;
+  placeItem.querySelector('.places__name').textContent = cardInfo.name;
+
+  placesList.prepend(placeItem);
+}
+
+initialCards.forEach(renderPlaceCard);
 
 profileEditButton.addEventListener('click', openPopup);
 
