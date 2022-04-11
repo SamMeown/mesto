@@ -43,7 +43,6 @@
 @import url(../blocks/form/__fieldset/form__fieldset.css);
 @import url(../blocks/form/__fieldset/_set/form__fieldset_set_inputs.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__input/_el/form__input_el_about.css);
 @import url(../blocks/form/__fieldset/_set/form__fieldset_set_input-handlers.css);
 @import url(../blocks/form/__submit-btn/form__submit-btn.css);
 
