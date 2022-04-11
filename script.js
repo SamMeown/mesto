@@ -25,50 +25,87 @@ const initialCards = [
   }
 ];
 
-let popup = document.querySelector('.popup.page__profile-popup');
-let popupCloseButton = popup.querySelector('.popup__close-btn');
+let profilePopup = document.querySelector('.popup.page__profile-popup');
+let profileFormElement = profilePopup.querySelector('.form');
 
-let formElement = popup.querySelector('.form');
-let nameInput = formElement.querySelector('.form__input_el_name');
-let aboutInput = formElement.querySelector('.form__input_el_about');
+let placePopup = document.querySelector('.popup.page__place-popup');
+let placeFormElement = placePopup.querySelector('.form');
 
 let profile = document.querySelector('.profile');
 let profileName = profile.querySelector('.profile__name');
 let profileAbout = profile.querySelector('.profile__about');
 let profileEditButton = profile.querySelector('.profile__edit-btn');
+let profileAddButton = profile.querySelector('.profile__add-btn');
 
 let placesList = document.querySelector('.places__list');
 
 const cardTemplate = document.querySelector('#place-card').content;
 
-function openPopup() {
-  initPopupForm();
+function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', onDocumentKeyUp);
 }
 
-function initPopupForm() {
-  nameInput.value = profileName.textContent;
-  aboutInput.value = profileAbout.textContent;
-}
-
-function closePopup() {
+function closePopup(popup) {
   document.removeEventListener('keyup', onDocumentKeyUp);
   popup.classList.remove('popup_opened');
 }
 
 function onDocumentKeyUp(event) {
   if (event.key === 'Escape') {
-    closePopup();
+    const popup = document.querySelector('.popup.popup_opened');
+    closePopup(popup);
   }
 }
 
-function formSubmitHandler(event) {
-  event.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileAbout.textContent = aboutInput.value;
+function addPopupEventListeners(popup) {
+  let popupCloseButton = popup.querySelector('.popup__close-btn');
+  popupCloseButton.addEventListener('click', evt => closePopup(popup));
+  popup.addEventListener('click', function(event) {
+    if (event.target === event.currentTarget) {
+      closePopup(popup);
+    }
+  });
+}
 
-  closePopup();
+function closeClickedPopup(event) {
+  popup = event.currentTarget.closest('.popup');
+  closePopup(popup);
+}
+
+function openProfilePopup() {
+  const profileNameInput = profileFormElement.querySelector('.form__input_el_name');
+  const profileAboutInput = profileFormElement.querySelector('.form__input_el_about');
+  profileNameInput.value = profileName.textContent;
+  profileAboutInput.value = profileAbout.textContent;
+  openPopup(profilePopup);
+}
+
+function profileFormSubmitHandler(event) {
+  event.preventDefault();
+  const profileNameInput = profileFormElement.querySelector('.form__input_el_name');
+  const profileAboutInput = profileFormElement.querySelector('.form__input_el_about');
+  profileName.textContent = profileNameInput.value;
+  profileAbout.textContent = profileAboutInput.value;
+
+  closeClickedPopup(event);
+}
+
+function openPlacePopup() {
+  placeFormElement.reset();
+  openPopup(placePopup);
+}
+
+function placeFormSubmitHandler(event) {
+  event.preventDefault();
+  const placeNameInput = placeFormElement.querySelector('.form__input_el_place-name');
+  const placeLinkInput = placeFormElement.querySelector('.form__input_el_place-link');
+  renderPlaceCard({
+    name: placeNameInput.value,
+    link: placeLinkInput.value
+  });
+
+  closeClickedPopup(event);
 }
 
 function renderPlaceCard(cardInfo) {
@@ -83,17 +120,14 @@ function renderPlaceCard(cardInfo) {
 
 initialCards.forEach(renderPlaceCard);
 
-profileEditButton.addEventListener('click', openPopup);
+profileEditButton.addEventListener('click', openProfilePopup);
+addPopupEventListeners(profilePopup);
+profileFormElement.addEventListener('submit', profileFormSubmitHandler);
 
-popupCloseButton.addEventListener('click', closePopup);
+profileAddButton.addEventListener('click', openPlacePopup);
+addPopupEventListeners(placePopup);
+placeFormElement.addEventListener('submit', placeFormSubmitHandler);
 
-popup.addEventListener('click', function(event) {
-  if (event.target === event.currentTarget) {
-    closePopup();
-  }
-});
-
-formElement.addEventListener('submit', formSubmitHandler);
 
 placesList.addEventListener('click', function (event) {
   if (event.target.classList.contains('places__like-btn')) {
