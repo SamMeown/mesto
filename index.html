@@ -75,17 +75,32 @@
         <p class="footer__copyright">© 2022 Mesto Russia</p>
       </footer>
     </div>
-    <div class="popup">
+    <div class="popup page__profile-popup">
       <section class="popup__container">
         <button class="popup__close-btn btn"></button>
-        <form class="profile-form popup__form">
-          <h2 class="profile-form__title">Редактировать профиль</h2>
-          <fieldset class="profile-form__fieldset profile-form__fieldset_set_inputs">
-            <input class="profile-form__input profile-form__input_el_name" type="text" name="name" placeholder="Имя" value="Жак-Ив Кусто">
-            <input class="profile-form__input profile-form__input_el_about" type="text" name="about" placeholder="О себе" value="Исследователь океана">
+        <form class="form popup__form">
+          <h2 class="form__title">Редактировать профиль</h2>
+          <fieldset class="form__fieldset form__fieldset_set_inputs">
+            <input class="form__input form__input_el_name" type="text" name="name" placeholder="Имя" value="Жак-Ив Кусто">
+            <input class="form__input form__input_el_about" type="text" name="about" placeholder="О себе" value="Исследователь океана">
           </fieldset>
-          <fieldset class="profile-form__fieldset profile-form__fieldset_set_input-handlers">
-            <input type="submit" value="Сохранить" class="profile-form__submit-btn">
+          <fieldset class="form__fieldset form__fieldset_set_input-handlers">
+            <input type="submit" value="Сохранить" class="form__submit-btn">
+          </fieldset>
+        </form>
+      </section>
+    </div>
+    <div class="popup page__place-popup">
+      <section class="popup__container">
+        <button class="popup__close-btn btn"></button>
+        <form class="form popup__form">
+          <h2 class="form__title">Новое место</h2>
+          <fieldset class="form__fieldset form__fieldset_set_inputs">
+            <input class="form__input form__input_el_place-name" type="text" name="name" placeholder="Название" value="">
+            <input class="form__input form__input_el_place-link" type="text" name="link" placeholder="Ссылка на картинку" value="">
+          </fieldset>
+          <fieldset class="form__fieldset form__fieldset_set_input-handlers">
+            <input type="submit" value="Создать" class="form__submit-btn">
           </fieldset>
         </form>
       </section>

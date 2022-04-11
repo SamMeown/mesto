@@ -25,12 +25,12 @@ const initialCards = [
   }
 ];
 
-let popup = document.querySelector('.popup');
+let popup = document.querySelector('.popup.page__profile-popup');
 let popupCloseButton = popup.querySelector('.popup__close-btn');
 
-let formElement = document.querySelector('.profile-form');
-let nameInput = formElement.querySelector('.profile-form__input_el_name');
-let aboutInput = formElement.querySelector('.profile-form__input_el_about');
+let formElement = popup.querySelector('.form');
+let nameInput = formElement.querySelector('.form__input_el_name');
+let aboutInput = formElement.querySelector('.form__input_el_about');
 
 let profile = document.querySelector('.profile');
 let profileName = profile.querySelector('.profile__name');

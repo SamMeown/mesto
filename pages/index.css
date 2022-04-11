@@ -38,12 +38,12 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
-@import url(../blocks/profile-form/profile-form.css);
-@import url(../blocks/profile-form/__title/profile-form__title.css);
-@import url(../blocks/profile-form/__fieldset/profile-form__fieldset.css);
-@import url(../blocks/profile-form/__fieldset/_set/profile-form__fieldset_set_inputs.css);
-@import url(../blocks/profile-form/__input/profile-form__input.css);
-@import url(../blocks/profile-form/__input/_el/profile-form__input_el_about.css);
-@import url(../blocks/profile-form/__fieldset/_set/profile-form__fieldset_set_input-handlers.css);
-@import url(../blocks/profile-form/__submit-btn/profile-form__submit-btn.css);
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__title/form__title.css);
+@import url(../blocks/form/__fieldset/form__fieldset.css);
+@import url(../blocks/form/__fieldset/_set/form__fieldset_set_inputs.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_el/form__input_el_about.css);
+@import url(../blocks/form/__fieldset/_set/form__fieldset_set_input-handlers.css);
+@import url(../blocks/form/__submit-btn/form__submit-btn.css);
 

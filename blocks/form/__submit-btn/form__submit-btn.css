@@ -1,4 +1,4 @@
-.profile-form__submit-btn {
+.form__submit-btn {
   padding: 0;
   height: 50px;
   border: none;
@@ -13,12 +13,12 @@
   transition: opacity 0.3s ease;
 }
 
-.profile-form__submit-btn:hover {
+.form__submit-btn:hover {
   opacity: 0.8;
 }
 
 @media screen and (max-width: 767px) {
-  .profile-form__submit-btn {
+  .form__submit-btn {
     height: 46px;
     font-size: 14px;
     line-height: 17px;
