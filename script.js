@@ -53,9 +53,3 @@ popup.addEventListener('click', function(event) {
 });
 
 formElement.addEventListener('submit', formSubmitHandler);
-
-placesList.addEventListener('click', function (event) {
-  if (event.target.classList.contains('places__like-btn')) {
-    event.target.classList.toggle('places__like-btn_clicked');
-  }
-});
