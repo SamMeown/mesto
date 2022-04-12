@@ -31,6 +31,8 @@ let profileFormElement = profilePopup.querySelector('.form');
 let placePopup = document.querySelector('.popup.page__place-popup');
 let placeFormElement = placePopup.querySelector('.form');
 
+let placeImagePopup = document.querySelector('.popup.page__place-image-popup');
+
 let profile = document.querySelector('.profile');
 let profileName = profile.querySelector('.profile__name');
 let profileAbout = profile.querySelector('.profile__about');
@@ -108,6 +110,14 @@ function placeFormSubmitHandler(event) {
   closeClickedPopup(event);
 }
 
+function openPlaceImagePopup(img, alt, label) {
+  const popupImage = placeImagePopup.querySelector('.popup__image');
+  popupImage.src = img;
+  popupImage.alt = alt;
+  placeImagePopup.querySelector('.popup__image-caption').textContent = label
+  openPopup(placeImagePopup);
+}
+
 function renderPlaceCard(cardInfo) {
   const placeItem = cardTemplate.firstElementChild.cloneNode(true);
   const placeImage = placeItem.querySelector('.places__image');
@@ -126,6 +136,13 @@ function handlePlaceLikeButtonClick(event) {
   event.target.classList.toggle('places__like-btn_clicked');
 }
 
+function handlePlaceImageClick(event) {
+  const image = event.target.src;
+  const alt = event.target.alt;
+  const label = event.target.parentElement.querySelector('.places__name').textContent;
+  openPlaceImagePopup(image, alt, label);
+}
+
 initialCards.forEach(renderPlaceCard);
 
 profileEditButton.addEventListener('click', openProfilePopup);
@@ -136,10 +153,14 @@ profileAddButton.addEventListener('click', openPlacePopup);
 addPopupEventListeners(placePopup);
 placeFormElement.addEventListener('submit', placeFormSubmitHandler);
 
+addPopupEventListeners(placeImagePopup);
+
 placesList.addEventListener('click', function (event) {
   if (event.target.classList.contains('places__like-btn')) {
     handlePlaceLikeButtonClick(event);
   } else if (event.target.classList.contains('places__delete-btn')) {
     handlePlaceDeleteButtonClick(event);
+  } else if (event.target.classList.contains('places__image')) {
+    handlePlaceImageClick(event);
   }
 });
