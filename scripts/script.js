@@ -118,6 +118,14 @@ function renderPlaceCard(cardInfo) {
   placesList.prepend(placeItem);
 }
 
+function handlePlaceDeleteButtonClick(event) {
+  event.target.closest('.places__item').remove();
+}
+
+function handlePlaceLikeButtonClick(event) {
+  event.target.classList.toggle('places__like-btn_clicked');
+}
+
 initialCards.forEach(renderPlaceCard);
 
 profileEditButton.addEventListener('click', openProfilePopup);
@@ -130,6 +138,8 @@ placeFormElement.addEventListener('submit', placeFormSubmitHandler);
 
 placesList.addEventListener('click', function (event) {
   if (event.target.classList.contains('places__like-btn')) {
-    event.target.classList.toggle('places__like-btn_clicked');
+    handlePlaceLikeButtonClick(event);
+  } else if (event.target.classList.contains('places__delete-btn')) {
+    handlePlaceDeleteButtonClick(event);
   }
 });
