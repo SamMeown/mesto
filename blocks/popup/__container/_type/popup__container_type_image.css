@@ -1,0 +1,11 @@
+.popup__container_type_image {
+  padding: 0;
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  margin-bottom: calc(-15px - 10px);
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
