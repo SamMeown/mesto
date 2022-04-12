@@ -127,3 +127,9 @@ profileFormElement.addEventListener('submit', profileFormSubmitHandler);
 profileAddButton.addEventListener('click', openPlacePopup);
 addPopupEventListeners(placePopup);
 placeFormElement.addEventListener('submit', placeFormSubmitHandler);
+
+placesList.addEventListener('click', function (event) {
+  if (event.target.classList.contains('places__like-btn')) {
+    event.target.classList.toggle('places__like-btn_clicked');
+  }
+});
