@@ -18,11 +18,11 @@
           <div class="profile__info">
             <div class="profile__name-container">
               <h1 class="profile__name overflow-ready-string">Жак-Ив Кустo</h1>
-              <button class="btn profile__edit-btn"></button>
+              <button class="btn profile__edit-btn" type="button" aria-label="Редактировать профиль"></button>
             </div>
             <p class="profile__about overflow-ready-string">Исследователь океана</p>
           </div>
-          <button class="btn profile__add-btn"></button>
+          <button class="btn profile__add-btn" type="button" aria-label="Добавить место"></button>
         </section>
         <section class="places page__places">
           <ul class="places__list">
@@ -30,42 +30,42 @@
               <img src="./images/places_karachaevsk.png" alt="Церковь в горах" class="places__image">
               <div class="places__footer">
                 <h2 class="places__name overflow-ready-string">Карачаевск</h2>
-                <button class="btn places__like-btn"></button>
+                <button class="btn places__like-btn" type="button" aria-label="Лайк"></button>
               </div>
             </li>
             <li class="places__item">
               <img src="./images/places_elbrus.png" alt="Вид на Эльбрус в восходе" class="places__image">
               <div class="places__footer">
                 <h2 class="places__name overflow-ready-string">Гора Эльбрус</h2>
-                <button class="btn places__like-btn"></button>
+                <button class="btn places__like-btn" type="button" aria-label="Лайк"></button>
               </div>
             </li>
             <li class="places__item">
               <img src="./images/places_dombai.png" alt="Склоны Домбая" class="places__image">
               <div class="places__footer">
                 <h2 class="places__name overflow-ready-string">Домбай</h2>
-                <button class="btn places__like-btn"></button>
+                <button class="btn places__like-btn" type="button" aria-label="Лайк"></button>
               </div>
             </li>
             <li class="places__item">
               <img src="./images/places_elbrus.png" alt="Вид на Эльбрус в восходе" class="places__image">
               <div class="places__footer">
                 <h2 class="places__name overflow-ready-string">Гора Эльбрус</h2>
-                <button class="btn places__like-btn"></button>
+                <button class="btn places__like-btn" type="button" aria-label="Лайк"></button>
               </div>
             </li>
             <li class="places__item">
               <img src="./images/places_dombai.png" alt="Склоны Домбая" class="places__image">
               <div class="places__footer">
                 <h2 class="places__name overflow-ready-string">Домбай</h2>
-                <button class="btn places__like-btn"></button>
+                <button class="btn places__like-btn" type="button" aria-label="Лайк"></button>
               </div>
             </li>
             <li class="places__item">
               <img src="./images/places_karachaevsk.png" alt="Церковь в горах" class="places__image">
               <div class="places__footer">
                 <h2 class="places__name overflow-ready-string">Карачаево-Черкессия</h2>
-                <button class="btn places__like-btn"></button>
+                <button class="btn places__like-btn" type="button" aria-label="Лайк"></button>
               </div>
             </li>
           </ul>
@@ -76,34 +76,30 @@
       </footer>
     </div>
     <div class="popup page__profile-popup">
-      <section class="popup__container">
-        <button class="popup__close-btn btn"></button>
+      <div class="popup__container">
+        <button class="popup__close-btn btn" type="button" aria-label="Закрыть"></button>
         <form class="form popup__form">
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__fieldset form__fieldset_set_inputs">
-            <input class="form__input form__input_el_name" type="text" name="name" placeholder="Имя" value="Жак-Ив Кусто">
-            <input class="form__input form__input_el_about" type="text" name="about" placeholder="О себе" value="Исследователь океана">
+            <input class="form__input form__input_el_name" type="text" name="name" placeholder="Имя" value="">
+            <input class="form__input form__input_el_about" type="text" name="about" placeholder="О себе" value="">
           </fieldset>
-          <fieldset class="form__fieldset form__fieldset_set_input-handlers">
-            <input type="submit" value="Сохранить" class="form__submit-btn">
-          </fieldset>
+          <button type="submit" class="form__submit-btn">Сохранить</button>
         </form>
-      </section>
+      </div>
     </div>
     <div class="popup page__place-popup">
-      <section class="popup__container">
-        <button class="popup__close-btn btn"></button>
+      <div class="popup__container">
+        <button class="popup__close-btn btn" type="button" aria-label="Закрыть"></button>
         <form class="form popup__form">
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__fieldset form__fieldset_set_inputs">
             <input class="form__input form__input_el_place-name" type="text" name="name" placeholder="Название" value="">
             <input class="form__input form__input_el_place-link" type="text" name="link" placeholder="Ссылка на картинку" value="">
           </fieldset>
-          <fieldset class="form__fieldset form__fieldset_set_input-handlers">
-            <input type="submit" value="Создать" class="form__submit-btn">
-          </fieldset>
+          <button type="submit" class="form__submit-btn">Создать</button>
         </form>
-      </section>
+      </div>
     </div>
   </div>
   <template id="place-card">
@@ -115,6 +111,6 @@
       </div>
     </li>
   </template>
-  <script src="./script.js"></script>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>

@@ -38,11 +38,9 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
+
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__fieldset/form__fieldset.css);
-@import url(../blocks/form/__fieldset/_set/form__fieldset_set_inputs.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__fieldset/_set/form__fieldset_set_input-handlers.css);
 @import url(../blocks/form/__submit-btn/form__submit-btn.css);
-

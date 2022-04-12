@@ -1,9 +1,0 @@
-.form__fieldset_set_input-handlers {
-  margin-top: 48px;
-}
-
-@media screen and (max-width: 767px) {
-  .form__fieldset_set_input-handlers {
-    margin-top: 45px;
-  }
-}
