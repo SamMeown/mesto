@@ -1,0 +1,9 @@
+.places__delete-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 18px;
+  height: 19px;
+  border: none;
+  background-image: url(../../../images/places_trash.svg);
+}
