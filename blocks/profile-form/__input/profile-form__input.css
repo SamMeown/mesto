@@ -8,6 +8,10 @@
   line-height: 17px;
 }
 
+.profile-form__input + .profile-form__input {
+  margin-top: 30px;
+}
+
 .profile-form__input:focus {
   outline: none;
   border-color: rgba(0, 0, 0, 0.5);
