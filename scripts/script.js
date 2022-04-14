@@ -1,10 +1,16 @@
 const profilePopup = document.querySelector('.page__profile-popup');
 const profileFormElement = profilePopup.querySelector('.form');
+const profileNameInput = profileFormElement.querySelector('.form__input_el_name');
+const profileAboutInput = profileFormElement.querySelector('.form__input_el_about');
 
 const placePopup = document.querySelector('.page__place-popup');
 const placeFormElement = placePopup.querySelector('.form');
+const placeNameInput = placeFormElement.querySelector('.form__input_el_place-name');
+const placeLinkInput = placeFormElement.querySelector('.form__input_el_place-link');
 
 const placeImagePopup = document.querySelector('.page__place-image-popup');
+const popupImage = placeImagePopup.querySelector('.popup__image');
+const popupImageCaption = placeImagePopup.querySelector('.popup__image-caption');
 
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
@@ -48,8 +54,6 @@ function closeClickedPopup(event) {
 }
 
 function openProfilePopup() {
-  const profileNameInput = profileFormElement.querySelector('.form__input_el_name');
-  const profileAboutInput = profileFormElement.querySelector('.form__input_el_about');
   profileNameInput.value = profileName.textContent;
   profileAboutInput.value = profileAbout.textContent;
   openPopup(profilePopup);
@@ -57,8 +61,6 @@ function openProfilePopup() {
 
 function profileFormSubmitHandler(event) {
   event.preventDefault();
-  const profileNameInput = profileFormElement.querySelector('.form__input_el_name');
-  const profileAboutInput = profileFormElement.querySelector('.form__input_el_about');
   profileName.textContent = profileNameInput.value;
   profileAbout.textContent = profileAboutInput.value;
 
@@ -72,8 +74,6 @@ function openPlacePopup() {
 
 function placeFormSubmitHandler(event) {
   event.preventDefault();
-  const placeNameInput = placeFormElement.querySelector('.form__input_el_place-name');
-  const placeLinkInput = placeFormElement.querySelector('.form__input_el_place-link');
   renderPlaceCard({
     name: placeNameInput.value,
     link: placeLinkInput.value
@@ -83,10 +83,9 @@ function placeFormSubmitHandler(event) {
 }
 
 function openPlaceImagePopup(img, alt, label) {
-  const popupImage = placeImagePopup.querySelector('.popup__image');
   popupImage.src = img;
   popupImage.alt = alt;
-  placeImagePopup.querySelector('.popup__image-caption').textContent = label
+  popupImageCaption.textContent = label
   openPopup(placeImagePopup);
 }
 
