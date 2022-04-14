@@ -74,10 +74,11 @@ function openPlacePopup() {
 
 function placeFormSubmitHandler(event) {
   event.preventDefault();
-  renderPlaceCard({
+  const newCard = buildPlaceCard({
     name: placeNameInput.value,
     link: placeLinkInput.value
   });
+  addPlaceCard(newCard);
 
   closeClickedPopup(event);
 }
@@ -89,32 +90,44 @@ function openPlaceImagePopup(img, alt, label) {
   openPopup(placeImagePopup);
 }
 
-function renderPlaceCard(cardInfo) {
+function buildPlaceCard(cardInfo) {
   const placeItem = cardTemplate.firstElementChild.cloneNode(true);
   const placeImage = placeItem.querySelector('.places__image');
   placeImage.src = cardInfo.link;
   placeImage.alt = cardInfo.name;
   placeItem.querySelector('.places__name').textContent = cardInfo.name;
 
-  placesList.prepend(placeItem);
+  placeItem.addEventListener('click', event => {
+    if (event.target.classList.contains('places__like-btn')) {
+      handlePlaceLikeButtonClick(event.target);
+    } else if (event.target.classList.contains('places__delete-btn')) {
+      handlePlaceDeleteButtonClick(placeItem);
+    } else if (event.target.classList.contains('places__image')) {
+      handlePlaceImageClick({name: cardInfo.name, src: cardInfo.link});
+    }
+  });
+
+  return placeItem
 }
 
-function handlePlaceDeleteButtonClick(event) {
-  event.target.closest('.places__item').remove();
+function addPlaceCard(card) {
+  placesList.prepend(card);
 }
 
-function handlePlaceLikeButtonClick(event) {
-  event.target.classList.toggle('places__like-btn_clicked');
+function handlePlaceDeleteButtonClick(placeItem) {
+  placeItem.remove();
 }
 
-function handlePlaceImageClick(event) {
-  const image = event.target.src;
-  const alt = event.target.alt;
-  const label = event.target.parentElement.querySelector('.places__name').textContent;
-  openPlaceImagePopup(image, alt, label);
+function handlePlaceLikeButtonClick(placeLikeButton) {
+  placeLikeButton.classList.toggle('places__like-btn_clicked');
 }
 
-initialCards.forEach(renderPlaceCard);
+function handlePlaceImageClick(imageInfo) {
+  openPlaceImagePopup(imageInfo.src, imageInfo.name, imageInfo.name);
+}
+
+
+initialCards.forEach(info => addPlaceCard(buildPlaceCard(info)));
 
 profileEditButton.addEventListener('click', openProfilePopup);
 addPopupEventListeners(profilePopup);
@@ -125,13 +138,3 @@ addPopupEventListeners(placePopup);
 placeFormElement.addEventListener('submit', placeFormSubmitHandler);
 
 addPopupEventListeners(placeImagePopup);
-
-placesList.addEventListener('click', function (event) {
-  if (event.target.classList.contains('places__like-btn')) {
-    handlePlaceLikeButtonClick(event);
-  } else if (event.target.classList.contains('places__delete-btn')) {
-    handlePlaceDeleteButtonClick(event);
-  } else if (event.target.classList.contains('places__image')) {
-    handlePlaceImageClick(event);
-  }
-});
