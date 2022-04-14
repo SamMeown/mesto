@@ -93,18 +93,22 @@ function openPlaceImagePopup(img, alt, label) {
 function buildPlaceCard(cardInfo) {
   const placeItem = cardTemplate.firstElementChild.cloneNode(true);
   const placeImage = placeItem.querySelector('.places__image');
+  const placeName = placeItem.querySelector('.places__name');
+  const placeDeleteBtn = placeItem.querySelector('.places__delete-btn');
+  const placeLikeBtn = placeItem.querySelector('.places__like-btn');
+
   placeImage.src = cardInfo.link;
   placeImage.alt = cardInfo.name;
-  placeItem.querySelector('.places__name').textContent = cardInfo.name;
+  placeName.textContent = cardInfo.name;
 
-  placeItem.addEventListener('click', event => {
-    if (event.target.classList.contains('places__like-btn')) {
-      handlePlaceLikeButtonClick(event.target);
-    } else if (event.target.classList.contains('places__delete-btn')) {
-      handlePlaceDeleteButtonClick(placeItem);
-    } else if (event.target.classList.contains('places__image')) {
-      handlePlaceImageClick({name: cardInfo.name, src: cardInfo.link});
-    }
+  placeImage.addEventListener('click', event => {
+    handlePlaceImageClick({name: cardInfo.name, src: cardInfo.link});
+  });
+  placeDeleteBtn.addEventListener('click', event => {
+    handlePlaceDeleteButtonClick(placeItem);
+  });
+  placeLikeBtn.addEventListener('click', event => {
+    handlePlaceLikeButtonClick(event.target);
   });
 
   return placeItem
