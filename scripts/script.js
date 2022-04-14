@@ -34,10 +34,9 @@ function onDocumentKeyUp(event) {
 }
 
 function addPopupEventListeners(popup) {
-  const popupCloseButton = popup.querySelector('.popup__close-btn');
-  popupCloseButton.addEventListener('click', evt => closePopup(popup));
   popup.addEventListener('click', function(event) {
-    if (event.target === event.currentTarget) {
+    if (event.target === event.currentTarget
+      || event.target.classList.contains('popup__close-btn')) {
       closePopup(popup);
     }
   });
