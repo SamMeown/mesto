@@ -1,10 +1,10 @@
-const profilePopup = document.querySelector('.popup.page__profile-popup');
+const profilePopup = document.querySelector('.page__profile-popup');
 const profileFormElement = profilePopup.querySelector('.form');
 
-const placePopup = document.querySelector('.popup.page__place-popup');
+const placePopup = document.querySelector('.page__place-popup');
 const placeFormElement = placePopup.querySelector('.form');
 
-const placeImagePopup = document.querySelector('.popup.page__place-image-popup');
+const placeImagePopup = document.querySelector('.page__place-image-popup');
 
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
