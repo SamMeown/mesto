@@ -1,18 +1,18 @@
-let profilePopup = document.querySelector('.popup.page__profile-popup');
-let profileFormElement = profilePopup.querySelector('.form');
+const profilePopup = document.querySelector('.popup.page__profile-popup');
+const profileFormElement = profilePopup.querySelector('.form');
 
-let placePopup = document.querySelector('.popup.page__place-popup');
-let placeFormElement = placePopup.querySelector('.form');
+const placePopup = document.querySelector('.popup.page__place-popup');
+const placeFormElement = placePopup.querySelector('.form');
 
-let placeImagePopup = document.querySelector('.popup.page__place-image-popup');
+const placeImagePopup = document.querySelector('.popup.page__place-image-popup');
 
-let profile = document.querySelector('.profile');
-let profileName = profile.querySelector('.profile__name');
-let profileAbout = profile.querySelector('.profile__about');
-let profileEditButton = profile.querySelector('.profile__edit-btn');
-let profileAddButton = profile.querySelector('.profile__add-btn');
+const profile = document.querySelector('.profile');
+const profileName = profile.querySelector('.profile__name');
+const profileAbout = profile.querySelector('.profile__about');
+const profileEditButton = profile.querySelector('.profile__edit-btn');
+const profileAddButton = profile.querySelector('.profile__add-btn');
 
-let placesList = document.querySelector('.places__list');
+const placesList = document.querySelector('.places__list');
 
 const cardTemplate = document.querySelector('#place-card').content;
 
@@ -34,7 +34,7 @@ function onDocumentKeyUp(event) {
 }
 
 function addPopupEventListeners(popup) {
-  let popupCloseButton = popup.querySelector('.popup__close-btn');
+  const popupCloseButton = popup.querySelector('.popup__close-btn');
   popupCloseButton.addEventListener('click', evt => closePopup(popup));
   popup.addEventListener('click', function(event) {
     if (event.target === event.currentTarget) {
