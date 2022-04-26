@@ -40,11 +40,11 @@
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__fieldset form__fieldset_set_inputs">
             <label class="form__field">
-              <input class="form__input form__input_el_name" type="text" name="name" placeholder="Имя" value="">
+              <input class="form__input form__input_el_name" type="text" name="name" placeholder="Имя" value="" minlength="2" maxlength="40" required>
               <span class="form__input-error form__input-error_el_name"></span>
             </label>
             <label class="form__field">
-              <input class="form__input form__input_el_about" type="text" name="about" placeholder="О себе" value="">
+              <input class="form__input form__input_el_about" type="text" name="about" placeholder="О себе" value="" minlength="2" maxlength="200" required>
               <span class="form__input-error form__input-error_el_about"></span>
             </label>
           </fieldset>
@@ -59,11 +59,11 @@
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__fieldset form__fieldset_set_inputs">
             <label class="form__field">
-              <input class="form__input form__input_el_place-name" type="text" name="name" placeholder="Название" value="">
+              <input class="form__input form__input_el_place-name" type="text" name="name" placeholder="Название" value="" minlength="2" maxlength="30" required>
               <span class="form__input-error form__input-error_el_place-name"></span>
             </label>
             <label class="form__field">
-              <input class="form__input form__input_el_place-link" type="text" name="link" placeholder="Ссылка на картинку" value="">
+              <input class="form__input form__input_el_place-link" type="url" name="link" placeholder="Ссылка на картинку" value="" required>
               <span class="form__input-error form__input-error_el_place-link"></span>
             </label>
           </fieldset>
