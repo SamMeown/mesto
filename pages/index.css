@@ -48,6 +48,7 @@
 @import url(../blocks/form/__input/_type/form__input_type_error.css);
 @import url(../blocks/form/__input-error/form__input-error.css);
 @import url(../blocks/form/__submit-btn/form__submit-btn.css);
+@import url(../blocks/form/__submit-btn/_disabled/form__submit-btn_disabled.css);
 
 @import url(../blocks/popup/_type/popup_type_image.css);
 @import url(../blocks/popup/__container/_type/popup__container_type_image.css);
