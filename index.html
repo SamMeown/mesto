@@ -36,7 +36,7 @@
     <div class="popup page__profile-popup">
       <div class="popup__container">
         <button class="popup__close-btn btn" type="button" aria-label="Закрыть"></button>
-        <form class="form popup__form" name="profile-form">
+        <form class="form popup__form" name="profile-form" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__fieldset form__fieldset_set_inputs">
             <label class="form__field">
@@ -55,7 +55,7 @@
     <div class="popup page__place-popup">
       <div class="popup__container">
         <button class="popup__close-btn btn" type="button" aria-label="Закрыть"></button>
-        <form class="form popup__form" name="place-form">
+        <form class="form popup__form" name="place-form" novalidate>
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__fieldset form__fieldset_set_inputs">
             <label class="form__field">
@@ -89,6 +89,7 @@
       <button class="btn places__delete-btn" type="button" aria-label="Удалить"></button>
     </li>
   </template>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/cards.js"></script>
   <script src="./scripts/script.js"></script>
 </body>

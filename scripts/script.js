@@ -54,9 +54,15 @@ function closeClickedPopup(event) {
 }
 
 function openProfilePopup() {
-  profileNameInput.value = profileName.textContent;
-  profileAboutInput.value = profileAbout.textContent;
+  profileFormElement.reset();
+  setInputValue(profileNameInput, profileName.textContent);
+  setInputValue(profileAboutInput, profileAbout.textContent);
   openPopup(profilePopup);
+}
+
+function setInputValue(input, value) {
+  input.value = value;
+  input.dispatchEvent(new Event('input'));
 }
 
 function profileFormSubmitHandler(event) {
@@ -142,3 +148,14 @@ addPopupEventListeners(placePopup);
 placeFormElement.addEventListener('submit', placeFormSubmitHandler);
 
 addPopupEventListeners(placeImagePopup);
+
+// Enabling form validation for all forms
+enableValidation({
+  inputClass: 'form__input',
+  errorInputClass: 'form__input_type_error',
+  inputSpecificModifier: 'el',
+  inputErrorClass: 'form__input-error',
+  activeInputErrorClass: 'form__input-error_active',
+  submitBtnClass: 'form__submit-btn',
+  inactiveSubmitBtnClass: 'form__submit-btn_disabled'
+});

@@ -1,0 +1,5 @@
+.form__input-error_active {
+  visibility: visible;
+  opacity: 1.0;
+  transition-delay: 0s;
+}
