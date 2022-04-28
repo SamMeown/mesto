@@ -66,11 +66,6 @@ function addFormEventListeners(form, config) {
       updateInputValidationMessage(form, input, config);
       updateSubmitButtonState(inputs, sumbit_btn, config);
     });
-
-    input.addEventListener('change', evt => {
-      updateInputValidationMessage(form, input, config);
-      updateSubmitButtonState(inputs, sumbit_btn, config);
-    });
   });
 
   form.addEventListener('reset', evt => {
