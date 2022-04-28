@@ -62,7 +62,7 @@ function openProfilePopup() {
 
 function setInputValue(input, value) {
   input.value = value;
-  input.dispatchEvent(new Event('input'));
+  input.dispatchEvent(new InputEvent('input'));
 }
 
 function profileFormSubmitHandler(event) {
