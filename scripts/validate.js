@@ -35,11 +35,13 @@ function enableValidation(config) {
   }
 
   function disableSubmitButton(button) {
+    button.setAttribute('disabled', '');
     button.classList.add(config.inactiveSubmitBtnClass);
   }
 
   function enableSubmitButton(button) {
     button.classList.remove(config.inactiveSubmitBtnClass);
+    button.removeAttribute('disabled');
   }
 
   function updateSubmitButtonState(inputs, button) {
