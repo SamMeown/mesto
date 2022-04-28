@@ -1,12 +1,12 @@
 const profilePopup = document.querySelector('.page__profile-popup');
 const profileFormElement = profilePopup.querySelector('.form');
-const profileNameInput = profileFormElement.querySelector('.form__input_el_name');
-const profileAboutInput = profileFormElement.querySelector('.form__input_el_about');
+const profileNameInput = profileFormElement.querySelector('#name-input');
+const profileAboutInput = profileFormElement.querySelector('#about-input');
 
 const placePopup = document.querySelector('.page__place-popup');
 const placeFormElement = placePopup.querySelector('.form');
-const placeNameInput = placeFormElement.querySelector('.form__input_el_place-name');
-const placeLinkInput = placeFormElement.querySelector('.form__input_el_place-link');
+const placeNameInput = placeFormElement.querySelector('#place-name-input');
+const placeLinkInput = placeFormElement.querySelector('#place-link-input');
 
 const placeImagePopup = document.querySelector('.page__place-image-popup');
 const popupImage = placeImagePopup.querySelector('.popup__image');
@@ -153,8 +153,8 @@ addPopupEventListeners(placeImagePopup);
 enableValidation({
   inputClass: 'form__input',
   errorInputClass: 'form__input_type_error',
-  inputSpecificModifier: 'el',
   inputErrorClass: 'form__input-error',
+  inputErrorSpecificModifier: 'el',
   activeInputErrorClass: 'form__input-error_active',
   submitBtnClass: 'form__submit-btn',
   inactiveSubmitBtnClass: 'form__submit-btn_disabled'

@@ -1,9 +1,5 @@
 function getErrorElement(form, input, config) {
-  const el_class = Array.from(input.classList).find(class_name => {
-    return class_name.includes(`${config.inputClass}_${config.inputSpecificModifier}_`);
-  });
-  const error_el_class = `${config.inputErrorClass}_${el_class.slice(el_class.indexOf(`${config.inputSpecificModifier}_`))}`;
-  return form.querySelector(`.${error_el_class}`);
+  return form.querySelector(`.${config.inputErrorClass}_${config.inputErrorSpecificModifier}_${input.id}`);
 }
 
 function showInputError(form, input, error, config) {
