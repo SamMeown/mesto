@@ -18,7 +18,7 @@ const profileAbout = profile.querySelector('.profile__about');
 const profileEditButton = profile.querySelector('.profile__edit-btn');
 const profileAddButton = profile.querySelector('.profile__add-btn');
 
-const placesList = document.querySelector('.places__list');
+const placesContainer = document.querySelector('.places__list');
 
 const cardTemplate = document.querySelector('#place-card').content;
 
@@ -121,7 +121,7 @@ function buildPlaceCard(cardInfo) {
 }
 
 function addPlaceCard(card) {
-  placesList.prepend(card);
+  placesContainer.prepend(card);
 }
 
 function handlePlaceDeleteButtonClick(placeItem) {
