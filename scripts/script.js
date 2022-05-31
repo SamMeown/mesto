@@ -1,3 +1,5 @@
+import initialCards from "./cards.js";
+
 const profilePopup = document.querySelector('.page__profile-popup');
 const profileFormElement = profilePopup.querySelector('.form');
 const profileNameInput = profileFormElement.querySelector('#name-input');
@@ -49,7 +51,7 @@ function addPopupEventListeners(popup) {
 }
 
 function closeClickedPopup(event) {
-  popup = event.currentTarget.closest('.popup');
+  const popup = event.currentTarget.closest('.popup');
   closePopup(popup);
 }
 
