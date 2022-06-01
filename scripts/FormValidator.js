@@ -3,6 +3,8 @@ export default class FormValidator {
   constructor(config, form) {
     this._config = config;
     this._form = form;
+    this._inputs = this._getInputs();
+    this._submitBtn = this._getSubmitButton();
   }
 
   _getInputs = () => {
@@ -13,27 +15,25 @@ export default class FormValidator {
     return this._form.querySelector(`.${this._config.submitBtnClass}`);
   }
 
-  _hasInvalidInput = (inputs) => {
-    return inputs.some(input => !input.validity.valid);
+  _hasInvalidInput = () => {
+    return this._inputs.some(input => !input.validity.valid);
   }
 
-  _disableSubmitButton = (button) => {
-    button.setAttribute('disabled', '');
-    button.classList.add(this._config.inactiveSubmitBtnClass);
+  _disableSubmitButton = () => {
+    this._submitBtn.setAttribute('disabled', '');
+    this._submitBtn.classList.add(this._config.inactiveSubmitBtnClass);
   }
 
-  _enableSubmitButton = (button) => {
-    button.classList.remove(this._config.inactiveSubmitBtnClass);
-    button.removeAttribute('disabled');
+  _enableSubmitButton = () => {
+    this._submitBtn.classList.remove(this._config.inactiveSubmitBtnClass);
+    this._submitBtn.removeAttribute('disabled');
   }
 
   _updateSubmitButtonState = () => {
-    const inputs = this._getInputs();
-    const button = this._getSubmitButton();
-    if (this._hasInvalidInput(inputs)) {
-      this._disableSubmitButton(button);
+    if (this._hasInvalidInput()) {
+      this._disableSubmitButton();
     } else {
-      this._enableSubmitButton(button);
+      this._enableSubmitButton();
     }
   }
 
@@ -64,8 +64,7 @@ export default class FormValidator {
   }
 
   _addFormEventListeners = () => {
-    const inputs = this._getInputs()
-    inputs.forEach(input => {
+    this._inputs.forEach(input => {
       input.addEventListener('input', evt => {
         this._updateInputValidationMessage(input);
         this._updateSubmitButtonState();
@@ -73,11 +72,10 @@ export default class FormValidator {
     });
 
     this._form.addEventListener('reset', evt => {
-      inputs.forEach(input => {
+      this._inputs.forEach(input => {
         this._hideInputError(input);
       });
-      const sumbit_btn = this._getSubmitButton()
-      this._disableSubmitButton(sumbit_btn);
+      this._disableSubmitButton();
     });
 
     this._form.addEventListener('submit', evt => {
