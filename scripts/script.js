@@ -1,5 +1,6 @@
 import initialCards from "./cards.js";
 import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 const profilePopup = document.querySelector('.page__profile-popup');
 const profileFormElement = profilePopup.querySelector('.form');
@@ -120,6 +121,13 @@ placeFormElement.addEventListener('submit', placeFormSubmitHandler);
 addPopupEventListeners(placeImagePopup);
 
 // Enabling form validation for all forms
+function enableValidation(config) {
+  Array.from(document.forms).forEach(form => {
+    const formValidator = new FormValidator(config, form);
+    formValidator.enableValidation();
+  });
+}
+
 enableValidation({
   inputClass: 'form__input',
   errorInputClass: 'form__input_type_error',
