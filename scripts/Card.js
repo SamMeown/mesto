@@ -28,16 +28,21 @@ export default class Card {
     this._onImageClick(imageInfo.src, imageInfo.name);
   }
 
-  build() {
-    const placeItem = this._template.firstElementChild.cloneNode(true);
+  _setupContent = (placeItem) => {
     const placeImage = placeItem.querySelector('.places__image');
     const placeName = placeItem.querySelector('.places__name');
-    const placeDeleteBtn = placeItem.querySelector('.places__delete-btn');
-    const placeLikeBtn = placeItem.querySelector('.places__like-btn');
 
     placeImage.src = this._link;
     placeImage.alt = this._name;
     placeName.textContent = this._name;
+
+    return placeItem;
+  }
+
+  _setupEventListeners = (placeItem) => {
+    const placeImage = placeItem.querySelector('.places__image');
+    const placeDeleteBtn = placeItem.querySelector('.places__delete-btn');
+    const placeLikeBtn = placeItem.querySelector('.places__like-btn');
 
     placeImage.addEventListener('click', event => {
       this._handlePlaceImageClick({name: this._name, src: this._link});
@@ -50,5 +55,15 @@ export default class Card {
     });
 
     return placeItem
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = this._template.firstElementChild.cloneNode(true);
+      this._element = this._setupContent(this._element);
+      this._element = this._setupEventListeners(this._element);
+    }
+
+    return this._element;
   }
 }

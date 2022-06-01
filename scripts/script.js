@@ -84,7 +84,7 @@ function openPlacePopup() {
 function placeFormSubmitHandler(event) {
   event.preventDefault();
   const newCard = new Card(placeLinkInput.value, placeNameInput.value, cardTemplateSelector, onPlaceCardImageClick);
-  addPlaceCard(newCard.build());
+  addPlaceCard(newCard.getElement());
 
   closeClickedPopup(event);
 }
@@ -106,7 +106,7 @@ function addPlaceCard(card) {
 
 initialCards.forEach(info => {
   const card = new Card(info.link, info.name, cardTemplateSelector, onPlaceCardImageClick);
-  addPlaceCard(card.build())
+  addPlaceCard(card.getElement())
 });
 
 profileEditButton.addEventListener('click', openProfilePopup);
