@@ -63,19 +63,27 @@ export default class FormValidator {
     }
   }
 
+  _handleInputInput = (input) => {
+    this._updateInputValidationMessage(input);
+    this._updateSubmitButtonState();
+  }
+
+  _handleFormReset = () => {
+    this._inputs.forEach(input => {
+      this._hideInputError(input);
+    });
+    this._disableSubmitButton();
+  }
+
   _addFormEventListeners = () => {
     this._inputs.forEach(input => {
       input.addEventListener('input', evt => {
-        this._updateInputValidationMessage(input);
-        this._updateSubmitButtonState();
+        this._handleInputInput(input);
       });
     });
 
     this._form.addEventListener('reset', evt => {
-      this._inputs.forEach(input => {
-        this._hideInputError(input);
-      });
-      this._disableSubmitButton();
+      this._handleFormReset();
     });
 
     this._form.addEventListener('submit', evt => {
