@@ -84,8 +84,8 @@ function openPlacePopup() {
 
 function placeFormSubmitHandler(event) {
   event.preventDefault();
-  const newCard = new Card(placeLinkInput.value, placeNameInput.value, cardTemplateSelector, onPlaceCardImageClick);
-  addPlaceCard(newCard.getElement());
+  const newCardElement = createCardElement(placeLinkInput.value, placeNameInput.value);
+  addPlaceCard(newCardElement);
 
   closeClickedPopup(event);
 }
@@ -105,9 +105,14 @@ function addPlaceCard(card) {
   placesContainer.prepend(card);
 }
 
+function createCardElement(link, name) {
+  const card = new Card(link, name, cardTemplateSelector, onPlaceCardImageClick);
+  return card.getElement();
+}
+
 initialCards.forEach(info => {
-  const card = new Card(info.link, info.name, cardTemplateSelector, onPlaceCardImageClick);
-  addPlaceCard(card.getElement())
+  const cardElement = createCardElement(info.link, info.name);
+  addPlaceCard(cardElement)
 });
 
 profileEditButton.addEventListener('click', openProfilePopup);
