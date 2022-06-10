@@ -1,6 +1,7 @@
 import initialCards from "./cards.js";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import Section from "./Section.js";
 
 const profilePopup = document.querySelector('.page__profile-popup');
 const profileFormElement = profilePopup.querySelector('.form');
@@ -101,6 +102,15 @@ function onPlaceCardImageClick(img, name) {
   openPlaceImagePopup(img, name, name);
 }
 
+const cardsList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const cardElement = createCardElement(item.link, item.name);
+    cardsList.addItem(cardElement);
+  }
+}, placesContainer);
+cardsList.renderItems();
+
 function addPlaceCard(card) {
   placesContainer.prepend(card);
 }
@@ -110,10 +120,10 @@ function createCardElement(link, name) {
   return card.getElement();
 }
 
-initialCards.forEach(info => {
-  const cardElement = createCardElement(info.link, info.name);
-  addPlaceCard(cardElement)
-});
+// initialCards.forEach(info => {
+//   const cardElement = createCardElement(info.link, info.name);
+//   addPlaceCard(cardElement)
+// });
 
 profileEditButton.addEventListener('click', openProfilePopup);
 addPopupEventListeners(profilePopup);
