@@ -23,7 +23,7 @@ const profileAbout = profile.querySelector('.profile__about');
 const profileEditButton = profile.querySelector('.profile__edit-btn');
 const profileAddButton = profile.querySelector('.profile__add-btn');
 
-const placesContainer = document.querySelector('.places__list');
+const placesContainerSelector = '.places__list';
 
 const cardTemplateSelector = '#place-card';
 
@@ -86,7 +86,7 @@ function openPlacePopup() {
 function placeFormSubmitHandler(event) {
   event.preventDefault();
   const newCardElement = createCardElement(placeLinkInput.value, placeNameInput.value);
-  addPlaceCard(newCardElement);
+  cardsList.addItem(newCardElement);
 
   closeClickedPopup(event);
 }
@@ -102,28 +102,22 @@ function onPlaceCardImageClick(img, name) {
   openPlaceImagePopup(img, name, name);
 }
 
-const cardsList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const cardElement = createCardElement(item.link, item.name);
-    cardsList.addItem(cardElement);
-  }
-}, placesContainer);
-cardsList.renderItems();
-
-function addPlaceCard(card) {
-  placesContainer.prepend(card);
-}
-
 function createCardElement(link, name) {
   const card = new Card(link, name, cardTemplateSelector, onPlaceCardImageClick);
   return card.getElement();
 }
 
-// initialCards.forEach(info => {
-//   const cardElement = createCardElement(info.link, info.name);
-//   addPlaceCard(cardElement)
-// });
+const cardsList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const cardElement = createCardElement(item.link, item.name);
+      cardsList.addItem(cardElement);
+    }
+  },
+  placesContainerSelector
+);
+cardsList.renderItems();
 
 profileEditButton.addEventListener('click', openProfilePopup);
 addPopupEventListeners(profilePopup);
