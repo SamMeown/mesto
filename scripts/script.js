@@ -2,6 +2,7 @@ import initialCards from "./cards.js";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 const profilePopup = document.querySelector('.page__profile-popup');
 const profileFormElement = profilePopup.querySelector('.form');
@@ -13,9 +14,7 @@ const placeFormElement = placePopup.querySelector('.form');
 const placeNameInput = placeFormElement.querySelector('#place-name-input');
 const placeLinkInput = placeFormElement.querySelector('#place-link-input');
 
-const placeImagePopup = document.querySelector('.page__place-image-popup');
-const popupImage = placeImagePopup.querySelector('.popup__image');
-const popupImageCaption = placeImagePopup.querySelector('.popup__image-caption');
+const placeImagePopupSelector = '.page__place-image-popup';
 
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
@@ -91,15 +90,8 @@ function placeFormSubmitHandler(event) {
   closeClickedPopup(event);
 }
 
-function openPlaceImagePopup(img, alt, label) {
-  popupImage.src = img;
-  popupImage.alt = alt;
-  popupImageCaption.textContent = label
-  openPopup(placeImagePopup);
-}
-
 function onPlaceCardImageClick(img, name) {
-  openPlaceImagePopup(img, name, name);
+  placeImagePopup.open(img, name, name)
 }
 
 function createCardElement(link, name) {
@@ -127,7 +119,8 @@ profileAddButton.addEventListener('click', openPlacePopup);
 addPopupEventListeners(placePopup);
 placeFormElement.addEventListener('submit', placeFormSubmitHandler);
 
-addPopupEventListeners(placeImagePopup);
+const placeImagePopup = new PopupWithImage(placeImagePopupSelector);
+placeImagePopup.setEventListeners();
 
 // Enabling form validation for all forms
 function enableValidation(config) {
