@@ -3,14 +3,17 @@ import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
 import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
 
-const profilePopup = document.querySelector('.page__profile-popup');
-const profileFormElement = profilePopup.querySelector('.form');
+const profilePopupSelector = '.page__profile-popup';
+const profilePopupElement = document.querySelector('.page__profile-popup');
+const profileFormElement = profilePopupElement.querySelector('.form');
 const profileNameInput = profileFormElement.querySelector('#name-input');
 const profileAboutInput = profileFormElement.querySelector('#about-input');
 
-const placePopup = document.querySelector('.page__place-popup');
-const placeFormElement = placePopup.querySelector('.form');
+const placePopupSelector = '.page__place-popup';
+const placePopupElement = document.querySelector('.page__place-popup');
+const placeFormElement = placePopupElement.querySelector('.form');
 const placeNameInput = placeFormElement.querySelector('#place-name-input');
 const placeLinkInput = placeFormElement.querySelector('#place-link-input');
 
@@ -58,10 +61,7 @@ function closeClickedPopup(event) {
 }
 
 function openProfilePopup() {
-  profileFormElement.reset();
-  setInputValue(profileNameInput, profileName.textContent);
-  setInputValue(profileAboutInput, profileAbout.textContent);
-  openPopup(profilePopup);
+  profilePopup.open();
 }
 
 function setInputValue(input, value) {
@@ -69,25 +69,23 @@ function setInputValue(input, value) {
   input.dispatchEvent(new InputEvent('input'));
 }
 
-function profileFormSubmitHandler(event) {
-  event.preventDefault();
+function profileFormSetupHandler(values) {
+  setInputValue(profileNameInput, profileName.textContent);
+  setInputValue(profileAboutInput, profileAbout.textContent);
+}
+
+function profileFormSubmitHandler(inputValues) {
   profileName.textContent = profileNameInput.value;
   profileAbout.textContent = profileAboutInput.value;
-
-  closeClickedPopup(event);
 }
 
 function openPlacePopup() {
-  placeFormElement.reset();
-  openPopup(placePopup);
+  placePopup.open();
 }
 
-function placeFormSubmitHandler(event) {
-  event.preventDefault();
+function placeFormSubmitHandler(inputValues) {
   const newCardElement = createCardElement(placeLinkInput.value, placeNameInput.value);
   cardsList.addItem(newCardElement);
-
-  closeClickedPopup(event);
 }
 
 function onPlaceCardImageClick(img, name) {
@@ -111,13 +109,13 @@ const cardsList = new Section(
 );
 cardsList.renderItems();
 
+const profilePopup = new PopupWithForm(profilePopupSelector, profileFormSubmitHandler, profileFormSetupHandler);
+profilePopup.setEventListeners();
 profileEditButton.addEventListener('click', openProfilePopup);
-addPopupEventListeners(profilePopup);
-profileFormElement.addEventListener('submit', profileFormSubmitHandler);
 
+const placePopup = new PopupWithForm(placePopupSelector, placeFormSubmitHandler);
+placePopup.setEventListeners();
 profileAddButton.addEventListener('click', openPlacePopup);
-addPopupEventListeners(placePopup);
-placeFormElement.addEventListener('submit', placeFormSubmitHandler);
 
 const placeImagePopup = new PopupWithImage(placeImagePopupSelector);
 placeImagePopup.setEventListeners();
