@@ -1,24 +1,21 @@
-import initialCards from "./cards.js";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
+import initialCards from "../data/cards.js";
+import { profilePopupSelector,
+         placePopupSelector,
+         placeImagePopupSelector,
+         profileNameSelector,
+         profileAboutSelector,
+         profileEditButton,
+         profileAddButton,
+         placesContainerSelector,
+         cardTemplateSelector
+       } from "../data/constants.js";
 
-const profilePopupSelector = '.page__profile-popup';
-const placePopupSelector = '.page__place-popup';
-const placeImagePopupSelector = '.page__place-image-popup';
-
-const profileNameSelector = '.profile__name';
-const profileAboutSelector = '.profile__about';
-const profile = document.querySelector('.profile');
-const profileEditButton = profile.querySelector('.profile__edit-btn');
-const profileAddButton = profile.querySelector('.profile__add-btn');
-
-const placesContainerSelector = '.places__list';
-
-const cardTemplateSelector = '#place-card';
 
 function openProfilePopup() {
   profilePopup.open(userInfo.getUserInfo());
