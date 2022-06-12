@@ -1,11 +1,11 @@
 export default class Card {
   static _templates = {};
 
-  constructor(link, name, templateSelector, onImageClick) {
+  constructor(link, name, templateSelector, handleCardClick) {
     this._link = link;
     this._name = name;
     this._templateSelector = templateSelector;
-    this._onImageClick = onImageClick;
+    this._handleCardClick = handleCardClick;
   }
 
   get _template() {
@@ -25,7 +25,7 @@ export default class Card {
   }
 
   _handlePlaceImageClick = (imageInfo) => {
-    this._onImageClick(imageInfo.src, imageInfo.name);
+    this._handleCardClick(imageInfo.src, imageInfo.name);
   }
 
   _setupContent = (placeItem) => {
