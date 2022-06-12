@@ -4,3 +4,9 @@
 # IDEs
 .idea
 .vscode
+
+# node
+node_modules/
+
+# webpack
+dist/
