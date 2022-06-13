@@ -68,7 +68,7 @@ export default class FormValidator {
     this._updateSubmitButtonState();
   }
 
-  _handleFormReset = () => {
+  resetValidation() {
     this._inputs.forEach(input => {
       this._hideInputError(input);
     });
@@ -80,10 +80,6 @@ export default class FormValidator {
       input.addEventListener('input', evt => {
         this._handleInputInput(input);
       });
-    });
-
-    this._form.addEventListener('reset', evt => {
-      this._handleFormReset();
     });
   }
 

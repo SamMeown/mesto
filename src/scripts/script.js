@@ -14,11 +14,13 @@ import { profilePopupSelector,
          profileEditButton,
          profileAddButton,
          placesContainerSelector,
-         cardTemplateSelector
+         cardTemplateSelector,
+         validatorConfig
        } from "../data/constants.js";
 
 
 function openProfilePopup() {
+  profilePopupFormValidator.resetValidation();
   profilePopup.open();
   profilePopup.setInputValues(userInfo.getUserInfo());
 }
@@ -28,6 +30,7 @@ function profileFormSubmitHandler(inputValues) {
 }
 
 function openPlacePopup() {
+  placePopupFormValidator.resetValidation();
   placePopup.open();
 }
 
@@ -73,20 +76,9 @@ profileAddButton.addEventListener('click', openPlacePopup);
 const placeImagePopup = new PopupWithImage(placeImagePopupSelector);
 placeImagePopup.setEventListeners();
 
-// Enabling form validation for all forms
-function enableValidation(config) {
-  Array.from(document.forms).forEach(form => {
-    const formValidator = new FormValidator(config, form);
-    formValidator.enableValidation();
-  });
-}
+// Enabling form validation for our forms
+const profilePopupFormValidator = new FormValidator(validatorConfig, profilePopup.getForm());
+profilePopupFormValidator.enableValidation();
 
-enableValidation({
-  inputClass: 'form__input',
-  errorInputClass: 'form__input_type_error',
-  inputErrorClass: 'form__input-error',
-  inputErrorSpecificModifier: 'el',
-  activeInputErrorClass: 'form__input-error_active',
-  submitBtnClass: 'form__submit-btn',
-  inactiveSubmitBtnClass: 'form__submit-btn_disabled'
-});
+const placePopupFormValidator = new FormValidator(validatorConfig, placePopup.getForm());
+placePopupFormValidator.enableValidation();
