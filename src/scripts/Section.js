@@ -5,7 +5,7 @@ export default class Section {
     this._container = document.querySelector(containerSelector);
   }
 
-  _clear = () => {
+  clear = () => {
     this._container.innerHTML = '';
   }
 
@@ -14,7 +14,6 @@ export default class Section {
   }
 
   renderItems() {
-    this._clear();
     this._items.forEach(item => {
       this._renderer(item);
     });
