@@ -5,12 +5,8 @@ export default class Popup {
 
   _handleKeyUp = (event) => {
     if (event.key === 'Escape') {
-      this._handleEscClose();
+      this.close();
     }
-  }
-
-  _handleEscClose = () => {
-    this.close();
   }
 
   _handleClick = (event) => {
