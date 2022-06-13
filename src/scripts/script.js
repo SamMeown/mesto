@@ -19,7 +19,8 @@ import { profilePopupSelector,
 
 
 function openProfilePopup() {
-  profilePopup.open(userInfo.getUserInfo());
+  profilePopup.open();
+  profilePopup.setInputValues(userInfo.getUserInfo());
 }
 
 function profileFormSubmitHandler(inputValues) {

@@ -21,7 +21,7 @@ export default class PopupWithForm extends Popup {
     input.dispatchEvent(new InputEvent('input'));
   }
 
-  _setInputValues = (values) => {
+  setInputValues = (values) => {
     this._inputs.forEach(input => {
       const value = values[input.name];
       if (value) {
@@ -39,13 +39,6 @@ export default class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', this._handleSubmit);
-  }
-
-  open(initialValues) {
-    if (initialValues) {
-      this._setInputValues(initialValues);
-    }
-    super.open();
   }
 
   close() {
