@@ -57,7 +57,10 @@ const cardsList = new Section(
 );
 cardsList.renderItems();
 
-const userInfo = new UserInfo(profileNameSelector, profileAboutSelector);
+const userInfo = new UserInfo({
+  nameSelector: profileNameSelector,
+  aboutSelector: profileAboutSelector
+});
 
 const profilePopup = new PopupWithForm(profilePopupSelector, profileFormSubmitHandler);
 profilePopup.setEventListeners();
