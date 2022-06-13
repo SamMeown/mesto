@@ -85,10 +85,6 @@ export default class FormValidator {
     this._form.addEventListener('reset', evt => {
       this._handleFormReset();
     });
-
-    this._form.addEventListener('submit', evt => {
-      evt.preventDefault();
-    });
   }
 
   enableValidation() {
