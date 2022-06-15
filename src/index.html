@@ -83,7 +83,10 @@
       <img src="<%=require('./images/places_placeholder.png')%>" alt="" class="places__image">
       <div class="places__footer">
         <h2 class="places__name overflow-ready-string"></h2>
-        <button class="btn places__like-btn" type="button" aria-label="Лайк"></button>
+        <div class="places__like-container">
+          <button class="btn places__like-btn" type="button" aria-label="Лайк"></button>
+          <p class="places__like-counter">1</p>
+        </div>
       </div>
       <button class="btn places__delete-btn" type="button" aria-label="Удалить"></button>
     </li>
