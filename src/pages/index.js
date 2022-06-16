@@ -4,6 +4,7 @@ import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirmation from '../components/PopupWithConfirmation';
 import UserInfo from "../components/UserInfo.js";
 import initialCards from "../data/cards.js";
 import { profilePopupSelector,
@@ -43,8 +44,17 @@ function onPlaceCardImageClick(img, name) {
   placeImagePopup.open(img, name, name)
 }
 
+function deleteCard(card) {
+  card.remove();
+}
+
+function onPlaceCardDeleteClick(card) {
+  deletePopup.setSubmitHandler(() => { deleteCard(card); });
+  deletePopup.open();
+}
+
 function createCardElement(link, name) {
-  const card = new Card(link, name, cardTemplateSelector, onPlaceCardImageClick);
+  const card = new Card(link, name, cardTemplateSelector, onPlaceCardImageClick, onPlaceCardDeleteClick);
   return card.getElement();
 }
 
@@ -64,6 +74,10 @@ const userInfo = new UserInfo({
   nameSelector: profileNameSelector,
   aboutSelector: profileAboutSelector
 });
+
+const deletePopupSelector = '.page__delete-popup';
+const deletePopup = new PopupWithConfirmation(deletePopupSelector)
+deletePopup.setEventListeners();
 
 const profilePopup = new PopupWithForm(profilePopupSelector, profileFormSubmitHandler);
 profilePopup.setEventListeners();

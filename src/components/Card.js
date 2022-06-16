@@ -1,11 +1,12 @@
 export default class Card {
   static _templates = {};
 
-  constructor(link, name, templateSelector, handleCardClick) {
+  constructor(link, name, templateSelector, handleCardClick, handleCardDeleteClick) {
     this._link = link;
     this._name = name;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleCardDeleteClick = handleCardDeleteClick;
   }
 
   get _template() {
@@ -17,7 +18,7 @@ export default class Card {
   }
 
   _handlePlaceDeleteButtonClick = (placeItem) => {
-    placeItem.remove();
+    this._handleCardDeleteClick(placeItem);
   }
 
   _handlePlaceLikeButtonClick = (placeLikeButton) => {
