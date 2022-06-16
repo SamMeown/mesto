@@ -78,6 +78,15 @@
       </div>
     </div>
   </div>
+  <div class="popup page__delete-popup">
+    <div class="popup__container">
+      <button class="popup__close-btn btn" type="button" aria-label="Закрыть"></button>
+      <form class="form popup__form" name="place-form" novalidate>
+        <h2 class="form__title">Вы уверены?</h2>
+        <button type="submit" class="form__submit-btn">Да</button>
+      </form>
+    </div>
+  </div>
   <template id="place-card">
     <li class="places__item">
       <img src="<%=require('./images/places_placeholder.png')%>" alt="" class="places__image">

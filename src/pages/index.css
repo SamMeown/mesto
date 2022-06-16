@@ -51,6 +51,7 @@
 @import url(../blocks/form/__input-error/form__input-error.css);
 @import url(../blocks/form/__input-error/_active/form__input-error_active.css);
 @import url(../blocks/form/__submit-btn/form__submit-btn.css);
+@import url(../blocks/form/__submit-btn/_type/form__submit-btn_type_confirm.css);
 @import url(../blocks/form/__submit-btn/_disabled/form__submit-btn_disabled.css);
 
 @import url(../blocks/popup/_type/popup_type_image.css);
