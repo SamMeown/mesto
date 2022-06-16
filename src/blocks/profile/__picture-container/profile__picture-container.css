@@ -1,0 +1,42 @@
+.profile__picture-container {
+  position: relative;
+  margin-right: 30px;
+  border-radius: 50%;
+  font-size: 0;
+  overflow:hidden;
+}
+
+.profile__picture-container::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  /* border-radius: 50%; */
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url(../../../images/avatar_edit-icn.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px auto;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.profile__picture-container:hover::before {
+  opacity: 1;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__picture-container {
+    flex-shrink: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__picture-container {
+    margin-right: 0;
+    margin-bottom: 26px;
+  }
+}
