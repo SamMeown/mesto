@@ -7,11 +7,13 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithConfirmation from '../components/PopupWithConfirmation';
 import UserInfo from "../components/UserInfo.js";
 import initialCards from "../data/cards.js";
-import { profilePopupSelector,
+import { avatarPopupSelector,
+         profilePopupSelector,
          placePopupSelector,
          placeImagePopupSelector,
          profileNameSelector,
          profileAboutSelector,
+         avatarContainer,
          profileEditButton,
          profileAddButton,
          placesContainerSelector,
@@ -28,6 +30,16 @@ function openProfilePopup() {
 
 function profileFormSubmitHandler(inputValues) {
   userInfo.setUserInfo(inputValues);
+}
+
+function openAvatarPopup() {
+  avatarPopupFormValidator.resetValidation();
+  avatarPopup.open();
+}
+
+function avatarFormSubmitHandler(inputValues) {
+  // TODO:
+  console.log(inputValues);
 }
 
 function openPlacePopup() {
@@ -83,6 +95,10 @@ const profilePopup = new PopupWithForm(profilePopupSelector, profileFormSubmitHa
 profilePopup.setEventListeners();
 profileEditButton.addEventListener('click', openProfilePopup);
 
+const avatarPopup = new PopupWithForm(avatarPopupSelector, avatarFormSubmitHandler);
+avatarPopup.setEventListeners();
+avatarContainer.addEventListener('click', openAvatarPopup);
+
 const placePopup = new PopupWithForm(placePopupSelector, placeFormSubmitHandler);
 placePopup.setEventListeners();
 profileAddButton.addEventListener('click', openPlacePopup);
@@ -93,6 +109,9 @@ placeImagePopup.setEventListeners();
 // Enabling form validation for our forms
 const profilePopupFormValidator = new FormValidator(validatorConfig, profilePopup.getForm());
 profilePopupFormValidator.enableValidation();
+
+const avatarPopupFormValidator = new FormValidator(validatorConfig, avatarPopup.getForm());
+avatarPopupFormValidator.enableValidation();
 
 const placePopupFormValidator = new FormValidator(validatorConfig, placePopup.getForm());
 placePopupFormValidator.enableValidation();
