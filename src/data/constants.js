@@ -10,6 +10,7 @@ export const profileAddButton = profile.querySelector('.profile__add-btn');
 
 export const profileNameSelector = '.profile__name';
 export const profileAboutSelector = '.profile__about';
+export const profileAvatarSelector = '.profile__picture';
 
 export const placesContainerSelector = '.places__list';
 

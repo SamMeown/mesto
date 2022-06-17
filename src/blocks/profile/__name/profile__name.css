@@ -7,6 +7,12 @@
   line-height: 1.14;
 }
 
+/* Чтобы сохранить высоту при пустом контенте, чтобы не дергалось при начальной загрузке */
+.profile__name:empty::before {
+  content: "";
+  display: inline-block;
+}
+
 @media screen and (max-width: 767px) {
   .profile__name {
     flex-grow: 1;

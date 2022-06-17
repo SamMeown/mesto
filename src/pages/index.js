@@ -14,6 +14,7 @@ import { avatarPopupSelector,
          placeImagePopupSelector,
          profileNameSelector,
          profileAboutSelector,
+         profileAvatarSelector,
          avatarContainer,
          profileEditButton,
          profileAddButton,
@@ -71,6 +72,12 @@ function createCardElement(cardData) {
   return card.getElement();
 }
 
+const userInfo = new UserInfo({
+  nameSelector: profileNameSelector,
+  aboutSelector: profileAboutSelector,
+  avatarSelector: profileAvatarSelector
+});
+
 const api = new Api('https://mesto.nomoreparties.co/v1/cohort-42', {
   headers: {
     authorization: '6d35ec1d-6d86-4d5b-9eab-6ccf0735e2e6',
@@ -80,8 +87,12 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-42', {
 
 Promise.all([api.getUserInfo(), api.getCards()])
   .then(data => {
-    const [userInfo, cards] = data;
-    cards.forEach(card => card.removable = card.owner._id === userInfo._id);
+    const [user, cards] = data;
+
+    userInfo.setUserInfo(user);
+    userInfo.setAvatar(user.avatar);
+
+    cards.forEach(card => card.removable = card.owner._id === user._id);
     const cardsList = new Section(
       {
         items: cards.slice(0).reverse(),
@@ -93,15 +104,12 @@ Promise.all([api.getUserInfo(), api.getCards()])
       placesContainerSelector
     );
     cardsList.renderItems();
+
+
   })
   .catch( err => {
     console.log(`Ошибка ${err}`);
   });
-
-const userInfo = new UserInfo({
-  nameSelector: profileNameSelector,
-  aboutSelector: profileAboutSelector
-});
 
 const deletePopupSelector = '.page__delete-popup';
 const deletePopup = new PopupWithConfirmation(deletePopupSelector)
