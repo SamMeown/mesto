@@ -2,11 +2,15 @@ import Popup from "./Popup.js";
 
 
 export default class PopupWithForm extends Popup {
+  static _submitButtonTitlePending = 'Сохранение...';
+
   constructor(popupSelector, submitHandler) {
     super(popupSelector);
     this._submitHandler = submitHandler;
     this._form = this._popup.querySelector('.form');
     this._inputs = this._form.querySelectorAll('.form__input');
+    this._submitButton = this._form.querySelector('.form__submit-btn');
+    this._submitButtonTitle = this._submitButton.textContent;
   }
 
   _getInputValues = () => {
@@ -37,7 +41,10 @@ export default class PopupWithForm extends Popup {
   _handleSubmit = (evt) => {
     evt.preventDefault();
     this._submitHandler(this._getInputValues());
-    this.close();
+  }
+
+  setPending(pending) {
+    this._submitButton.textContent = pending ? PopupWithForm._submitButtonTitlePending : this._submitButtonTitle;
   }
 
   setEventListeners() {

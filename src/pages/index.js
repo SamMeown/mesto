@@ -30,8 +30,23 @@ function openProfilePopup() {
   profilePopup.setInputValues(userInfo.getUserInfo());
 }
 
+function reportError(err) {
+  console.log(`Ошибка ${err}`);
+}
+
 function profileFormSubmitHandler(inputValues) {
-  userInfo.setUserInfo(inputValues);
+  profilePopup.setPending(true);
+  api.updateUserInfo(inputValues)
+    .then(data => {
+      userInfo.setUserInfo(data);
+    })
+    .catch( err => {
+      reportError(err);
+    })
+    .finally(() => {
+      profilePopup.setPending(false);
+      profilePopup.close();
+    })
 }
 
 function openAvatarPopup() {
@@ -108,7 +123,7 @@ Promise.all([api.getUserInfo(), api.getCards()])
 
   })
   .catch( err => {
-    console.log(`Ошибка ${err}`);
+    reportError(err);
   });
 
 const deletePopupSelector = '.page__delete-popup';
