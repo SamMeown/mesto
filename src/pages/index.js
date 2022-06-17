@@ -60,8 +60,15 @@ function openPlacePopup() {
 }
 
 function placeFormSubmitHandler(inputValues) {
-  const newCardElement = createCardElement(inputValues.link, inputValues.name);
-  cardsList.addItem(newCardElement);
+  return api.createCard(inputValues)
+    .then(data => {
+      data.removable = true;
+      const newCardElement = createCardElement(data);
+      cardsList.addItem(newCardElement);
+    })
+    .catch(err => {
+      reportError(err);
+    });
 }
 
 function onPlaceCardImageClick(img, name) {
@@ -95,6 +102,8 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-42', {
   }
 });
 
+let cardsList;
+
 Promise.all([api.getUserInfo(), api.getCards()])
   .then(data => {
     const [user, cards] = data;
@@ -103,7 +112,7 @@ Promise.all([api.getUserInfo(), api.getCards()])
     userInfo.setAvatar(user.avatar);
 
     cards.forEach(card => card.removable = card.owner._id === user._id);
-    const cardsList = new Section(
+    cardsList = new Section(
       {
         items: cards.slice(0).reverse(),
         renderer: (item) => {
