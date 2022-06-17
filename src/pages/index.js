@@ -6,6 +6,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithConfirmation from '../components/PopupWithConfirmation';
 import UserInfo from "../components/UserInfo.js";
+import Api from '../components/Api';
 import initialCards from "../data/cards.js";
 import { avatarPopupSelector,
          profilePopupSelector,
@@ -65,22 +66,37 @@ function onPlaceCardDeleteClick(card) {
   deletePopup.open();
 }
 
-function createCardElement(link, name) {
-  const card = new Card(link, name, cardTemplateSelector, onPlaceCardImageClick, onPlaceCardDeleteClick);
+function createCardElement(cardData) {
+  const card = new Card(cardData, cardTemplateSelector, onPlaceCardImageClick, onPlaceCardDeleteClick);
   return card.getElement();
 }
 
-const cardsList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const cardElement = createCardElement(item.link, item.name);
-      cardsList.addItem(cardElement);
-    }
-  },
-  placesContainerSelector
-);
-cardsList.renderItems();
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-42', {
+  headers: {
+    authorization: '6d35ec1d-6d86-4d5b-9eab-6ccf0735e2e6',
+    'Content-Type': 'application/json'
+  }
+});
+
+Promise.all([api.getUserInfo(), api.getCards()])
+  .then(data => {
+    const [userInfo, cards] = data;
+    cards.forEach(card => card.removable = card.owner._id === userInfo._id);
+    const cardsList = new Section(
+      {
+        items: cards.slice(0).reverse(),
+        renderer: (item) => {
+          const cardElement = createCardElement(item);
+          cardsList.addItem(cardElement);
+        }
+      },
+      placesContainerSelector
+    );
+    cardsList.renderItems();
+  })
+  .catch( err => {
+    console.log(`Ошибка ${err}`);
+  });
 
 const userInfo = new UserInfo({
   nameSelector: profileNameSelector,

@@ -1,9 +1,8 @@
 export default class Card {
   static _templates = {};
 
-  constructor(link, name, templateSelector, handleCardClick, handleCardDeleteClick) {
-    this._link = link;
-    this._name = name;
+  constructor(data, templateSelector, handleCardClick, handleCardDeleteClick) {
+    this._data = data;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleCardDeleteClick = handleCardDeleteClick;
@@ -32,10 +31,15 @@ export default class Card {
   _setupContent = () => {
     const placeImage = this._element.querySelector('.places__image');
     const placeName = this._element.querySelector('.places__name');
+    const placeDeleteBtn = this._element.querySelector('.places__delete-btn');
 
-    placeImage.src = this._link;
-    placeImage.alt = this._name;
-    placeName.textContent = this._name;
+    placeImage.src = this._data.link;
+    placeImage.alt = this._data.name;
+    placeName.textContent = this._data.name;
+
+    if (!this._data.removable) {
+      placeDeleteBtn.style.display = 'none';
+    }
   }
 
   _setupEventListeners = () => {
@@ -44,14 +48,17 @@ export default class Card {
     const placeLikeBtn = this._element.querySelector('.places__like-btn');
 
     placeImage.addEventListener('click', event => {
-      this._handlePlaceImageClick({name: this._name, src: this._link});
-    });
-    placeDeleteBtn.addEventListener('click', event => {
-      this._handlePlaceDeleteButtonClick(this._element);
+      this._handlePlaceImageClick({name: this._data.name, src: this._data.link});
     });
     placeLikeBtn.addEventListener('click', event => {
       this._handlePlaceLikeButtonClick(event.target);
     });
+
+    if (this._data.removable) {
+      placeDeleteBtn.addEventListener('click', event => {
+        this._handlePlaceDeleteButtonClick(this._element);
+      });
+    }
   }
 
   getElement() {
