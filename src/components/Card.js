@@ -37,7 +37,7 @@ export default class Card {
     placeImage.src = this._data.link;
     placeImage.alt = this._data.name;
     placeName.textContent = this._data.name;
-    placeLikeCounter.textContent = this._data.likes.length;
+    placeLikeCounter.textContent = this._data.likesCount;
 
     if (!this._data.removable) {
       placeDeleteBtn.style.display = 'none';
