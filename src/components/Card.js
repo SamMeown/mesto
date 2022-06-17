@@ -1,11 +1,12 @@
 export default class Card {
   static _templates = {};
 
-  constructor(data, templateSelector, handleCardClick, handleCardDeleteClick) {
+  constructor(data, templateSelector, handleCardClick, handleCardDeleteClick, handleCardLikeClick) {
     this._data = data;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleCardDeleteClick = handleCardDeleteClick;
+    this._handleCardLikeClick = handleCardLikeClick;
   }
 
   get _template() {
@@ -21,27 +22,43 @@ export default class Card {
   }
 
   _handlePlaceLikeButtonClick = (placeLikeButton) => {
-    placeLikeButton.classList.toggle('places__like-btn_clicked');
+    this._handleCardLikeClick(this._data.id, !this._data.liked)
+      .then(({ likesCount, liked }) => {
+        this._data.likesCount = likesCount;
+        this._data.liked = liked;
+        this._updateLikes();
+      })
+      .catch(err => {
+        console.log(`Ошибка ${err}`);
+      });
   }
 
   _handlePlaceImageClick = (imageInfo) => {
     this._handleCardClick(imageInfo.src, imageInfo.name);
   }
 
+  _updateLikes() {
+    const placeLikeCounter = this._element.querySelector('.places__like-counter');
+    const placeLikeBtn = this._element.querySelector('.places__like-btn');
+
+    placeLikeCounter.textContent = this._data.likesCount;
+    placeLikeBtn.classList.toggle('places__like-btn_clicked', this._data.liked);
+  }
+
   _setupContent = () => {
     const placeImage = this._element.querySelector('.places__image');
     const placeName = this._element.querySelector('.places__name');
     const placeDeleteBtn = this._element.querySelector('.places__delete-btn');
-    const placeLikeCounter = this._element.querySelector('.places__like-counter');
 
     placeImage.src = this._data.link;
     placeImage.alt = this._data.name;
     placeName.textContent = this._data.name;
-    placeLikeCounter.textContent = this._data.likesCount;
 
     if (!this._data.removable) {
       placeDeleteBtn.style.display = 'none';
     }
+
+    this._updateLikes();
   }
 
   _setupEventListeners = () => {

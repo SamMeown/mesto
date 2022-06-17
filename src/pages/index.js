@@ -83,18 +83,32 @@ function onPlaceCardDeleteClick(card) {
   deletePopup.open();
 }
 
+function onPlaceCardLikeClick(cardId, liked) {
+  return (liked ? api.addLike(cardId) : api.deleteLike(cardId))
+    .then(data => {
+      const { likesCount, liked } = getCardData(data);
+      return { likesCount, liked };
+    });
+}
+
 function createCardElement(cardData) {
-  const card = new Card(cardData, cardTemplateSelector, onPlaceCardImageClick, onPlaceCardDeleteClick);
+  const card = new Card(
+    cardData,
+    cardTemplateSelector,
+    onPlaceCardImageClick,
+    onPlaceCardDeleteClick,
+    onPlaceCardLikeClick
+  );
   return card.getElement();
 }
 
 function getCardData(card) {
   return {
-    id: card.owner._id,
+    id: card._id,
     name: card.name,
     link: card.link,
     likesCount: card.likes.length,
-    liked: card.likes.filter(like => like._id === card.owner._id).length > 0,
+    liked: card.likes.filter(like => like._id === userId).length > 0,
     removable: card.owner._id === userId
   }
 }
