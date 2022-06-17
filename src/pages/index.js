@@ -50,8 +50,13 @@ function openAvatarPopup() {
 }
 
 function avatarFormSubmitHandler(inputValues) {
-  // TODO:
-  console.log(inputValues);
+  return api.updateUserAvatar({ avatar: inputValues.link })
+    .then(data => {
+      userInfo.setAvatar(data.avatar);
+    })
+    .catch(err => {
+      reportError(err);
+    });
 }
 
 function openPlacePopup() {
