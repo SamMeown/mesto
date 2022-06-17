@@ -17,8 +17,8 @@ export default class Card {
     return Card._templates[this._templateSelector];
   }
 
-  _handlePlaceDeleteButtonClick = (placeItem) => {
-    this._handleCardDeleteClick(placeItem);
+  _handlePlaceDeleteButtonClick = () => {
+    this._handleCardDeleteClick(this._data.id, this._element);
   }
 
   _handlePlaceLikeButtonClick = (placeLikeButton) => {
@@ -75,7 +75,7 @@ export default class Card {
 
     if (this._data.removable) {
       placeDeleteBtn.addEventListener('click', event => {
-        this._handlePlaceDeleteButtonClick(this._element);
+        this._handlePlaceDeleteButtonClick();
       });
     }
   }

@@ -74,12 +74,18 @@ function onPlaceCardImageClick(img, name) {
   placeImagePopup.open(img, name, name)
 }
 
-function deleteCard(card) {
-  card.remove();
+function deleteCard(cardId, cardElement) {
+  api.deleteCard(cardId)
+    .then(data => {
+      cardElement.remove();
+    })
+    .catch(err => {
+      reportError(err);
+    });
 }
 
-function onPlaceCardDeleteClick(card) {
-  deletePopup.setSubmitHandler(() => { deleteCard(card); });
+function onPlaceCardDeleteClick(cardId, cardElement) {
+  deletePopup.setSubmitHandler(() => { deleteCard(cardId, cardElement); });
   deletePopup.open();
 }
 
