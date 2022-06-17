@@ -35,18 +35,13 @@ function reportError(err) {
 }
 
 function profileFormSubmitHandler(inputValues) {
-  profilePopup.setPending(true);
-  api.updateUserInfo(inputValues)
+  return api.updateUserInfo(inputValues)
     .then(data => {
       userInfo.setUserInfo(data);
     })
     .catch( err => {
       reportError(err);
-    })
-    .finally(() => {
-      profilePopup.setPending(false);
-      profilePopup.close();
-    })
+    });
 }
 
 function openAvatarPopup() {

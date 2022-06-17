@@ -40,7 +40,12 @@ export default class PopupWithForm extends Popup {
 
   _handleSubmit = (evt) => {
     evt.preventDefault();
-    this._submitHandler(this._getInputValues());
+    this.setPending(true);
+    this._submitHandler(this._getInputValues())
+      .finally(() => {
+        this.setPending(false);
+        this.close();
+      });
   }
 
   setPending(pending) {
