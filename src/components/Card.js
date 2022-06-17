@@ -32,10 +32,12 @@ export default class Card {
     const placeImage = this._element.querySelector('.places__image');
     const placeName = this._element.querySelector('.places__name');
     const placeDeleteBtn = this._element.querySelector('.places__delete-btn');
+    const placeLikeCounter = this._element.querySelector('.places__like-counter');
 
     placeImage.src = this._data.link;
     placeImage.alt = this._data.name;
     placeName.textContent = this._data.name;
+    placeLikeCounter.textContent = this._data.likes.length;
 
     if (!this._data.removable) {
       placeDeleteBtn.style.display = 'none';
