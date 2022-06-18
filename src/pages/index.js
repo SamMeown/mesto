@@ -7,7 +7,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithConfirmation from '../components/PopupWithConfirmation';
 import UserInfo from "../components/UserInfo.js";
 import Api from '../components/Api';
-import initialCards from "../data/cards.js";
 import { avatarPopupSelector,
          profilePopupSelector,
          placePopupSelector,
