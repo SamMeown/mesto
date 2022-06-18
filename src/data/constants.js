@@ -1,6 +1,7 @@
 export const profilePopupSelector = '.page__profile-popup';
 export const avatarPopupSelector = '.page__avatar-popup';
 export const placePopupSelector = '.page__place-popup';
+export const deletePopupSelector = '.page__delete-popup';
 export const placeImagePopupSelector = '.page__place-image-popup';
 
 const profile = document.querySelector('.profile');

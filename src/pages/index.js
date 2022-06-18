@@ -11,6 +11,7 @@ import initialCards from "../data/cards.js";
 import { avatarPopupSelector,
          profilePopupSelector,
          placePopupSelector,
+         deletePopupSelector,
          placeImagePopupSelector,
          profileNameSelector,
          profileAboutSelector,
@@ -24,14 +25,14 @@ import { avatarPopupSelector,
        } from "../data/constants.js";
 
 
+function reportError(err) {
+  console.log(`Ошибка ${err}`);
+}
+
 function openProfilePopup() {
   profilePopupFormValidator.resetValidation();
   profilePopup.open();
   profilePopup.setInputValues(userInfo.getUserInfo());
-}
-
-function reportError(err) {
-  console.log(`Ошибка ${err}`);
 }
 
 function profileFormSubmitHandler(inputValues) {
@@ -124,6 +125,34 @@ function getCardData(card) {
   }
 }
 
+const deletePopup = new PopupWithConfirmation(deletePopupSelector)
+deletePopup.setEventListeners();
+
+const profilePopup = new PopupWithForm(profilePopupSelector, profileFormSubmitHandler);
+profilePopup.setEventListeners();
+profileEditButton.addEventListener('click', openProfilePopup);
+
+const avatarPopup = new PopupWithForm(avatarPopupSelector, avatarFormSubmitHandler);
+avatarPopup.setEventListeners();
+avatarContainer.addEventListener('click', openAvatarPopup);
+
+const placePopup = new PopupWithForm(placePopupSelector, placeFormSubmitHandler);
+placePopup.setEventListeners();
+profileAddButton.addEventListener('click', openPlacePopup);
+
+const placeImagePopup = new PopupWithImage(placeImagePopupSelector);
+placeImagePopup.setEventListeners();
+
+// Enabling form validation for our forms
+const profilePopupFormValidator = new FormValidator(validatorConfig, profilePopup.getForm());
+profilePopupFormValidator.enableValidation();
+
+const avatarPopupFormValidator = new FormValidator(validatorConfig, avatarPopup.getForm());
+avatarPopupFormValidator.enableValidation();
+
+const placePopupFormValidator = new FormValidator(validatorConfig, placePopup.getForm());
+placePopupFormValidator.enableValidation();
+
 const userInfo = new UserInfo({
   nameSelector: profileNameSelector,
   aboutSelector: profileAboutSelector,
@@ -166,32 +195,3 @@ Promise.all([api.getUserInfo(), api.getCards()])
   .catch( err => {
     reportError(err);
   });
-
-const deletePopupSelector = '.page__delete-popup';
-const deletePopup = new PopupWithConfirmation(deletePopupSelector)
-deletePopup.setEventListeners();
-
-const profilePopup = new PopupWithForm(profilePopupSelector, profileFormSubmitHandler);
-profilePopup.setEventListeners();
-profileEditButton.addEventListener('click', openProfilePopup);
-
-const avatarPopup = new PopupWithForm(avatarPopupSelector, avatarFormSubmitHandler);
-avatarPopup.setEventListeners();
-avatarContainer.addEventListener('click', openAvatarPopup);
-
-const placePopup = new PopupWithForm(placePopupSelector, placeFormSubmitHandler);
-placePopup.setEventListeners();
-profileAddButton.addEventListener('click', openPlacePopup);
-
-const placeImagePopup = new PopupWithImage(placeImagePopupSelector);
-placeImagePopup.setEventListeners();
-
-// Enabling form validation for our forms
-const profilePopupFormValidator = new FormValidator(validatorConfig, profilePopup.getForm());
-profilePopupFormValidator.enableValidation();
-
-const avatarPopupFormValidator = new FormValidator(validatorConfig, avatarPopup.getForm());
-avatarPopupFormValidator.enableValidation();
-
-const placePopupFormValidator = new FormValidator(validatorConfig, placePopup.getForm());
-placePopupFormValidator.enableValidation();
