@@ -83,6 +83,7 @@ function deleteCard(cardId, cardElement) {
   api.deleteCard(cardId)
     .then(data => {
       cardElement.remove();
+      deletePopup.close();
     })
     .catch(err => {
       reportError(err);
