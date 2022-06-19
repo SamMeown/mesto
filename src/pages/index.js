@@ -34,7 +34,7 @@ function openProfilePopup() {
   profilePopup.setInputValues(userInfo.getUserInfo());
 }
 
-function profileFormSubmitHandler(inputValues) {
+function handleProfileFormSubmit(inputValues) {
   return api.updateUserInfo(inputValues)
     .then(data => {
       userInfo.setUserInfo(data);
@@ -49,7 +49,7 @@ function openAvatarPopup() {
   avatarPopup.open();
 }
 
-function avatarFormSubmitHandler(inputValues) {
+function handleAvatarFormSubmit(inputValues) {
   return api.updateUserAvatar({ avatar: inputValues.link })
     .then(data => {
       userInfo.setAvatar(data.avatar);
@@ -64,7 +64,7 @@ function openPlacePopup() {
   placePopup.open();
 }
 
-function placeFormSubmitHandler(inputValues) {
+function handlePlaceFormSubmit(inputValues) {
   return api.createCard(inputValues)
     .then(data => {
       const newCardElement = createCardElement(getCardData(data));
@@ -127,15 +127,15 @@ function getCardData(card) {
 const deletePopup = new PopupWithConfirmation(deletePopupSelector)
 deletePopup.setEventListeners();
 
-const profilePopup = new PopupWithForm(profilePopupSelector, profileFormSubmitHandler);
+const profilePopup = new PopupWithForm(profilePopupSelector, handleProfileFormSubmit);
 profilePopup.setEventListeners();
 profileEditButton.addEventListener('click', openProfilePopup);
 
-const avatarPopup = new PopupWithForm(avatarPopupSelector, avatarFormSubmitHandler);
+const avatarPopup = new PopupWithForm(avatarPopupSelector, handleAvatarFormSubmit);
 avatarPopup.setEventListeners();
 avatarContainer.addEventListener('click', openAvatarPopup);
 
-const placePopup = new PopupWithForm(placePopupSelector, placeFormSubmitHandler);
+const placePopup = new PopupWithForm(placePopupSelector, handlePlaceFormSubmit);
 placePopup.setEventListeners();
 profileAddButton.addEventListener('click', openPlacePopup);
 
