@@ -38,43 +38,40 @@ export default class Card {
   }
 
   _updateLikes() {
-    const placeLikeCounter = this._element.querySelector('.places__like-counter');
-    const placeLikeBtn = this._element.querySelector('.places__like-btn');
+    this._placeLikeCounter.textContent = this._data.likesCount;
+    this._placeLikeBtn.classList.toggle('places__like-btn_clicked', this._data.liked);
+  }
 
-    placeLikeCounter.textContent = this._data.likesCount;
-    placeLikeBtn.classList.toggle('places__like-btn_clicked', this._data.liked);
+  _initSubelements =() => {
+    this._placeImage = this._element.querySelector('.places__image');
+    this._placeName = this._element.querySelector('.places__name');
+    this._placeDeleteBtn = this._element.querySelector('.places__delete-btn');
+    this._placeLikeBtn = this._element.querySelector('.places__like-btn');
+    this._placeLikeCounter = this._element.querySelector('.places__like-counter');
   }
 
   _setupContent = () => {
-    const placeImage = this._element.querySelector('.places__image');
-    const placeName = this._element.querySelector('.places__name');
-    const placeDeleteBtn = this._element.querySelector('.places__delete-btn');
-
-    placeImage.src = this._data.link;
-    placeImage.alt = this._data.name;
-    placeName.textContent = this._data.name;
+    this._placeImage.src = this._data.link;
+    this._placeImage.alt = this._data.name;
+    this._placeName.textContent = this._data.name;
 
     if (!this._data.removable) {
-      placeDeleteBtn.style.display = 'none';
+      this._placeDeleteBtn.style.display = 'none';
     }
 
     this._updateLikes();
   }
 
   _setupEventListeners = () => {
-    const placeImage = this._element.querySelector('.places__image');
-    const placeDeleteBtn = this._element.querySelector('.places__delete-btn');
-    const placeLikeBtn = this._element.querySelector('.places__like-btn');
-
-    placeImage.addEventListener('click', event => {
+    this._placeImage.addEventListener('click', event => {
       this._handlePlaceImageClick({name: this._data.name, src: this._data.link});
     });
-    placeLikeBtn.addEventListener('click', event => {
+    this._placeLikeBtn.addEventListener('click', event => {
       this._handlePlaceLikeButtonClick(event.target);
     });
 
     if (this._data.removable) {
-      placeDeleteBtn.addEventListener('click', event => {
+      this._placeDeleteBtn.addEventListener('click', event => {
         this._handlePlaceDeleteButtonClick();
       });
     }
@@ -83,6 +80,7 @@ export default class Card {
   getElement() {
     if (!this._element) {
       this._element = this._template.firstElementChild.cloneNode(true);
+      this._initSubelements();
       this._setupContent();
       this._setupEventListeners();
     }
