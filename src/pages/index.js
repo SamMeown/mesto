@@ -32,6 +32,7 @@ function openProfilePopup() {
   profilePopupFormValidator.resetValidation();
   profilePopup.open();
   profilePopup.setInputValues(userInfo.getUserInfo());
+  profilePopupFormValidator.updateValidation();
 }
 
 function openAvatarPopup() {

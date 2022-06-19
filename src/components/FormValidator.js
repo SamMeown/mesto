@@ -63,9 +63,15 @@ export default class FormValidator {
     }
   }
 
-  _handleInputInput = (input) => {
+  _updateInputValidation = (input) => {
     this._updateInputValidationMessage(input);
     this._updateSubmitButtonState();
+  }
+
+  updateValidation() {
+    this._inputs.forEach(input => {
+      this._updateInputValidation(input);
+    });
   }
 
   resetValidation() {
@@ -78,7 +84,7 @@ export default class FormValidator {
   _addFormEventListeners = () => {
     this._inputs.forEach(input => {
       input.addEventListener('input', evt => {
-        this._handleInputInput(input);
+        this._updateInputValidation(input);
       });
     });
   }
