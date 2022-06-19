@@ -158,6 +158,16 @@ const userInfo = new UserInfo({
   avatarSelector: profileAvatarSelector
 });
 
+const cardsList = new Section(
+  {
+    renderer: (item) => {
+      const cardElement = createCardElement(item);
+      cardsList.addItem(cardElement);
+    }
+  },
+  placesContainerSelector
+);
+
 const api = new Api('https://mesto.nomoreparties.co/v1/cohort-42', {
   headers: {
     authorization: '6d35ec1d-6d86-4d5b-9eab-6ccf0735e2e6',
@@ -165,7 +175,6 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-42', {
   }
 });
 
-let cardsList;
 let userId;
 
 Promise.all([api.getUserInfo(), api.getCards()])
@@ -177,19 +186,7 @@ Promise.all([api.getUserInfo(), api.getCards()])
     userInfo.setAvatar(user.avatar);
 
     const cardsData = cards.map(getCardData)
-    cardsList = new Section(
-      {
-        items: cardsData.slice(0).reverse(),
-        renderer: (item) => {
-          const cardElement = createCardElement(item);
-          cardsList.addItem(cardElement);
-        }
-      },
-      placesContainerSelector
-    );
-    cardsList.renderItems();
-
-
+    cardsList.renderItems(cardsData.slice(0).reverse());
   })
   .catch( err => {
     reportError(err);
