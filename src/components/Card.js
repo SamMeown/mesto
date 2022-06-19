@@ -22,22 +22,20 @@ export default class Card {
   }
 
   _handlePlaceLikeButtonClick = (placeLikeButton) => {
-    this._handleCardLikeClick(this._data.id, !this._data.liked)
-      .then(({ likesCount, liked }) => {
-        this._data.likesCount = likesCount;
-        this._data.liked = liked;
-        this._updateLikes();
-      })
-      .catch(err => {
-        console.log(`Ошибка ${err}`);
-      });
+    this._handleCardLikeClick(this._data.id, !this._data.liked, this);
   }
 
   _handlePlaceImageClick = (imageInfo) => {
     this._handleCardClick(imageInfo.src, imageInfo.name);
   }
 
-  _updateLikes() {
+  updateLikes(likesCount, liked) {
+    this._data.likesCount = likesCount;
+    this._data.liked = liked;
+    this._renderLikes();
+  }
+
+  _renderLikes = () => {
     this._placeLikeCounter.textContent = this._data.likesCount;
     this._placeLikeBtn.classList.toggle('places__like-btn_clicked', this._data.liked);
   }
@@ -59,7 +57,7 @@ export default class Card {
       this._placeDeleteBtn.style.display = 'none';
     }
 
-    this._updateLikes();
+    this._renderLikes();
   }
 
   _setupEventListeners = () => {

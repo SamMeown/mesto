@@ -94,11 +94,14 @@ function onPlaceCardDeleteClick(cardId, cardElement) {
   deletePopup.open();
 }
 
-function onPlaceCardLikeClick(cardId, liked) {
-  return (liked ? api.addLike(cardId) : api.deleteLike(cardId))
+function onPlaceCardLikeClick(cardId, liked, card) {
+  (liked ? api.addLike(cardId) : api.deleteLike(cardId))
     .then(data => {
       const { likesCount, liked } = getCardData(data);
-      return { likesCount, liked };
+      card.updateLikes(likesCount, liked);
+    })
+    .catch(err => {
+      console.log(`Ошибка ${err}`);
     });
 }
 
