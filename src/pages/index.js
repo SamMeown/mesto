@@ -34,29 +34,9 @@ function openProfilePopup() {
   profilePopup.setInputValues(userInfo.getUserInfo());
 }
 
-function handleProfileFormSubmit(inputValues) {
-  return api.updateUserInfo(inputValues)
-    .then(data => {
-      userInfo.setUserInfo(data);
-    })
-    .catch( err => {
-      reportError(err);
-    });
-}
-
 function openAvatarPopup() {
   avatarPopupFormValidator.resetValidation();
   avatarPopup.open();
-}
-
-function handleAvatarFormSubmit(inputValues) {
-  return api.updateUserAvatar({ avatar: inputValues.link })
-    .then(data => {
-      userInfo.setAvatar(data.avatar);
-    })
-    .catch(err => {
-      reportError(err);
-    });
 }
 
 function openPlacePopup() {
@@ -64,16 +44,40 @@ function openPlacePopup() {
   placePopup.open();
 }
 
-function handlePlaceFormSubmit(inputValues) {
-  return api.createCard(inputValues)
-    .then(data => {
-      const newCardElement = createCardElement(getCardData(data));
-      cardsList.addItem(newCardElement);
-    })
-    .catch(err => {
-      reportError(err);
-    });
+function getPopupFormSubmitHandler(apiCall, successHandler) {
+  function handlePopupFormSubmit(inputValues, popup) {
+    popup.setPending(true)
+    apiCall(inputValues)
+      .then(data => {
+        successHandler(data);
+        popup.setPending(false);
+        popup.close();
+      })
+      .catch( err => {
+        reportError(err);
+      });
+  }
+
+  return handlePopupFormSubmit;
 }
+
+const handleProfileFormSubmit = getPopupFormSubmitHandler(
+  inputValues => api.updateUserInfo(inputValues),
+  data => userInfo.setUserInfo(data)
+);
+
+const handleAvatarFormSubmit = getPopupFormSubmitHandler(
+  inputValues => api.updateUserAvatar({ avatar: inputValues.link }),
+  data => userInfo.setAvatar(data.avatar)
+);
+
+const handlePlaceFormSubmit = getPopupFormSubmitHandler(
+  inputValues => api.createCard(inputValues),
+  data => {
+    const newCardElement = createCardElement(getCardData(data));
+    cardsList.addItem(newCardElement);
+  }
+);
 
 function onPlaceCardImageClick(img, name) {
   placeImagePopup.open(img, name, name)
