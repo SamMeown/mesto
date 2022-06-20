@@ -89,10 +89,10 @@ function onPlaceCardImageClick(img, name) {
   placeImagePopup.open(img, name, name)
 }
 
-function deleteCard(cardId, cardElement) {
+function deleteCard(cardId, card) {
   api.deleteCard(cardId)
     .then(data => {
-      cardElement.remove();
+      card.remove();
       deletePopup.close();
     })
     .catch(err => {
@@ -100,8 +100,8 @@ function deleteCard(cardId, cardElement) {
     });
 }
 
-function onPlaceCardDeleteClick(cardId, cardElement) {
-  deletePopup.setSubmitHandler(() => { deleteCard(cardId, cardElement); });
+function onPlaceCardDeleteClick(cardId, card) {
+  deletePopup.setSubmitHandler(() => { deleteCard(cardId, card); });
   deletePopup.open();
 }
 

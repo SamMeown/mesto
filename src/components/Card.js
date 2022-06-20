@@ -18,7 +18,7 @@ export default class Card {
   }
 
   _handlePlaceDeleteButtonClick = () => {
-    this._handleCardDeleteClick(this._data.id, this._element);
+    this._handleCardDeleteClick(this._data.id, this);
   }
 
   _handlePlaceLikeButtonClick = (placeLikeButton) => {
@@ -27,6 +27,10 @@ export default class Card {
 
   _handlePlaceImageClick = (imageInfo) => {
     this._handleCardClick(imageInfo.src, imageInfo.name);
+  }
+
+  remove() {
+    this._element.remove();
   }
 
   updateLikes(likesCount, liked) {
