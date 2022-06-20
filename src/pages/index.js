@@ -49,13 +49,16 @@ function getPopupFormSubmitHandler(apiCall, successHandler) {
   function handlePopupFormSubmit(inputValues, popup) {
     popup.setPending(true)
     apiCall(inputValues)
+      .finally(() => {
+        // сбрасываем pending-текст сразу после запроса, чтобы в случае показа ошибки
+        // не перетирался текст ошибки
+        popup.setPending(false);
+      })
       .then(data => {
         successHandler(data);
-        popup.setPending(false);
         popup.close();
       })
       .catch( err => {
-        popup.setPending(false);
         popup.displayError();
         reportError(err);
       });
