@@ -55,6 +55,8 @@ function getPopupFormSubmitHandler(apiCall, successHandler) {
         popup.close();
       })
       .catch( err => {
+        popup.setPending(false);
+        popup.displayError();
         reportError(err);
       });
   }

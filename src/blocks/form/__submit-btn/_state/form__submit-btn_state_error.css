@@ -1,0 +1,4 @@
+.form__submit-btn_state_error {
+  background-color: #f00b;
+  pointer-events: none;
+}

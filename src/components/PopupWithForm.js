@@ -3,6 +3,7 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
   static _submitButtonTitlePending = 'Сохранение...';
+  static _submitButtonTitleError = 'Ошибка';
 
   constructor(popupSelector, submitHandler) {
     super(popupSelector);
@@ -42,6 +43,23 @@ export default class PopupWithForm extends Popup {
     this._submitButton.textContent = pending ? PopupWithForm._submitButtonTitlePending : this._submitButtonTitle;
   }
 
+  _setError(hasError) {
+    if (hasError) {
+      this._submitButton.textContent = PopupWithForm._submitButtonTitleError;
+      this._submitButton.classList.add('form__submit-btn_state_error');
+    } else {
+      this._submitButton.textContent = this._submitButtonTitle;
+      this._submitButton.classList.remove('form__submit-btn_state_error');
+    }
+  }
+
+  displayError() {
+    this._setError(true);
+    this._displayErrorTimeout = setTimeout(() => {
+      this._setError(false);
+    }, 1500);
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', this._handleSubmit);
@@ -49,6 +67,9 @@ export default class PopupWithForm extends Popup {
 
   close() {
     this._form.reset();
+    this.setPending(false);
+    clearTimeout(this._displayErrorTimeout);
+    this._setError(false);
     super.close();
   }
 }
