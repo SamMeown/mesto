@@ -44,6 +44,7 @@
 .form__input-error_active{opacity:1;transition-delay:0s;visibility:visible}
 .form__submit-btn{background-color:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-family:inherit;font-size:18px;font-weight:400;height:50px;line-height:22px;margin-top:48px;padding:0;transition:opacity .3s ease;width:100%}.form__submit-btn:hover{opacity:.8}@media screen and (max-width:767px){.form__submit-btn{font-size:14px;height:46px;line-height:17px;margin-top:45px}}
 .form__submit-btn_type_confirm{margin-top:32px}
+.form__submit-btn_state_error{background-color:#f00b;pointer-events:none}
 .form__submit-btn_disabled{background-color:transparent;border:1px solid #000;box-sizing:border-box;color:#000;opacity:.2;pointer-events:none}
 .popup_type_image{background-color:rgba(0,0,0,.9)}
 .popup__container_type_image{background-color:transparent;border:none;border-radius:0;box-shadow:none;margin-bottom:-25px;max-width:none;min-width:0;padding:0;width:auto}
